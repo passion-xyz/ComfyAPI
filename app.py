@@ -1,26 +1,25 @@
 from io import BytesIO
 import os
 import base64
+import sys
 import subprocess
 
 class InferlessPythonModel:
     def initialize(self):
+        import subprocess
+
         __location__ = os.path.realpath(
             os.path.join(os.getcwd(), os.path.dirname(__file__))
         )
-        script_path = os.path.join(__location__, "custom_nodes_setup.sh")
-        print(f"Running {script_path}")
-        result = subprocess.run([f"ls {__location__}"], capture_output=True, text=True)
-        print(result)
-
-        result = subprocess.run([f"ls {script_path}"], capture_output=True, text=True)
-        print(result)
-
-        result = subprocess.run([f"cat {script_path}"], capture_output=True, text=True)
-        print(result)
-
-        result = subprocess.run([f"sh {script_path}"], capture_output=True, text=True)
-        print(result)
+        file_name = os.path.join(__location__, "main.py")
+        self.process = subprocess.Popen(["python3.10", file_name])
+        mounted_path = '/var/nfs-mount/Passion-ComfyUI-Volumes'
+        sys.path.insert(1, mounted_path)
+        try:
+            ls_output = subprocess.check_output(['ls', mounted_path])
+            print("Contents of the mounted path:", ls_output.decode())
+        except subprocess.CalledProcessError as e:
+            print("Failed to list contents of the mounted path:", e)
         
     def infer(self, inputs):
         prompt = inputs["prompt"]
@@ -28,3 +27,6 @@ class InferlessPythonModel:
         
     def finalize(self):
         self.pipe = None
+        self.process.terminate()
+        print("Finalizing", flush=True)
+
