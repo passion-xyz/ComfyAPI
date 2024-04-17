@@ -10,7 +10,11 @@ class InferlessPythonModel:
         )
         script_path = os.path.join(__location__, "custom_nodes_setup.sh")
         print(f"Running {script_path}")
-        result = subprocess.run([f"bash {script_path}"], capture_output=True, text=True)
+        result = subprocess.run([f"cat {script_path}"], capture_output=True, text=True)
+        print(result)
+
+        result = subprocess.run([f"sh {script_path}"], capture_output=True, text=True)
+        print(result)
         
     def infer(self, inputs):
         prompt = inputs["prompt"]
