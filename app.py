@@ -1,10 +1,16 @@
 from io import BytesIO
+import os
 import base64
 import subprocess
 
 class InferlessPythonModel:
     def initialize(self):
-        result = subprocess.run(['bash ./custom_nodes_setup.sh'], capture_output=True, text=True)
+        __location__ = os.path.realpath(
+            os.path.join(os.getcwd(), os.path.dirname(__file__))
+        )
+        script_path = os.path.join(__location__, "custom_nodes_setup.sh")
+        print(f"Running {script_path}")
+        result = subprocess.run([f"bash {script_path}"], capture_output=True, text=True)
         
     def infer(self, inputs):
         prompt = inputs["prompt"]
