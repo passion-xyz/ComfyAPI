@@ -22,8 +22,9 @@ class InferlessPythonModel:
             print("Failed to list contents of the mounted path:", e)
         
     def infer(self, inputs):
-        prompt = inputs["prompt"]
-        return { "generated_image_base64" : prompt }
+        print(inputs)
+        # prompt = inputs["prompt"]
+        return { "generated_image_base64" : 'prompt' }
         
     def finalize(self):
         self.pipe = None
