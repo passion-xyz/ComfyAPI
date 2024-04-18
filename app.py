@@ -9,6 +9,12 @@ import json
 from urllib import request
 import requests
 
+from helpers.comfyui import ComfyUI
+
+OUTPUT_DIR = "/var/nfs-mount/Passion-ComfyUI-Volumes/output"
+INPUT_DIR = "/tmp/inputs"
+COMFYUI_TEMP_OUTPUT_DIR = "ComfyUI/temp"
+
 class InferlessPythonModel:
 
     @staticmethod
@@ -50,9 +56,12 @@ class InferlessPythonModel:
         __location__ = os.path.realpath(
             os.path.join(os.getcwd(), os.path.dirname(__file__))
         )
-        file_name = os.path.join(__location__, "./ComfyUI/main.py")
-        self.process = subprocess.Popen(["python3.10", file_name, "--listen 0.0.0.0 --highvram"])
+        # file_name = os.path.join(__location__, "./ComfyUI/main.py")
+        # self.process = subprocess.Popen(["python3.10", file_name, "--listen 0.0.0.0 --highvram"])
         # self.process = subprocess.Popen(["python3.10", file_name, "--listen 0.0.0.0 --normalvram --disable-smart-memory"])
+
+        self.comfyUI = ComfyUI("127.0.0.1:8188")
+        self.comfyUI.start_server(OUTPUT_DIR, INPUT_DIR)
         
     def infer(self, inputs):
         try:
@@ -88,7 +97,14 @@ class InferlessPythonModel:
             return e
         
     def finalize(self):
-        self.pipe = None
-        self.process.terminate()
         print("Finalizing", flush=True)
+        # self.pipe = None
+        # self.process.terminate()
+
+        self.comfyUI.clear_queue()
+        for directory in [OUTPUT_DIR, INPUT_DIR, COMFYUI_TEMP_OUTPUT_DIR]:
+            if os.path.exists(directory):
+                shutil.rmtree(directory)
+            os.makedirs(directory)
+
 
