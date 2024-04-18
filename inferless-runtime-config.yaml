@@ -17,3 +17,8 @@ build:
     - "psutil"
     - "requests"
     - "torchvision"
+    - "opencv-python"
+    - "numba"
+    - "numexpr"
+    - "inference_core_nodes"
+    - "kornia"
