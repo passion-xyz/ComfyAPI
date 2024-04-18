@@ -50,7 +50,7 @@ class InferlessPythonModel:
         __location__ = os.path.realpath(
             os.path.join(os.getcwd(), os.path.dirname(__file__))
         )
-        file_name = os.path.join(__location__, "main.py")
+        file_name = os.path.join(__location__, "./ComfyUI/main.py")
         self.process = subprocess.Popen(["python3.10", file_name])
         
     def infer(self, inputs):
