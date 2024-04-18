@@ -26,7 +26,7 @@ class InferlessPythonModel:
             return base64_image
         except Exception as e:
             print(f"Error processing {image_path}: {e}")
-            return None
+            return e
         
     @staticmethod
     def get_final_image_name(directory):
@@ -84,7 +84,7 @@ class InferlessPythonModel:
             return {"generated_image": base64_image}
         except Exception as e:
             print(f"Error processing: {e}", flush=True)
-            return None
+            return e
         
     def finalize(self):
         self.pipe = None
