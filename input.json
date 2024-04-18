@@ -1,24 +1,10 @@
 {
-    "inputs": [
-      {
-        "name": "workflow",
-        "datatype": "BYTES",
-        "shape": [
-          1
-        ],
-        "data": [
-          "txt_2_img"
-        ]
-      },
-      {
-        "name": "parameters",
-        "datatype": "BYTES",
-        "shape": [
-          1
-        ],
-        "data": [
-          "{\"prompt\": \"A bird flying while smoking a cigratte\"}"
-        ]
-      }
-    ]
+  "inputs": [
+    {
+      "name": "workflow",
+      "datatype": "STRING",
+      "shape": [1],
+      "data": ["{\"prompt\": \"A bird flying while smoking a cigratte\"}"]
+    }
+  ]
 }
