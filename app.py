@@ -56,11 +56,11 @@ class InferlessPythonModel:
     def infer(self, inputs):
         try:
             print("Infer Started", flush=True)
-            prompt = inputs["prompt"]
+            workflow = inputs["workflow"]
 
-            print("Recieved prompt:", prompt, flush=True)
+            print("Recieved workflow:", workflow, flush=True)
 
-            p = {"prompt": prompt}
+            p = {"prompt": workflow}
 
             data = json.dumps(p).encode("utf-8")
             print("Prompt Encoding Happened", flush=True)
