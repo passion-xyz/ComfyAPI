@@ -2,6 +2,11 @@ build:
   system_packages:
     - "ffmpeg"
     - "libtesseract-dev"
+    - "opencv-python"
+    - "numba"
+    - "numexpr"
+    - "inference_core_nodes"
+    - "kornia"
   python_packages:
     - "torch"
     - "torchsde"
