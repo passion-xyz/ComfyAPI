@@ -51,7 +51,8 @@ class InferlessPythonModel:
             os.path.join(os.getcwd(), os.path.dirname(__file__))
         )
         file_name = os.path.join(__location__, "./ComfyUI/main.py")
-        self.process = subprocess.Popen(["python3.10", file_name])
+        self.process = subprocess.Popen(["python3.10", file_name, "--listen 0.0.0.0 --highvram"])
+        # self.process = subprocess.Popen(["python3.10", file_name, "--listen 0.0.0.0 --normalvram --disable-smart-memory"])
         
     def infer(self, inputs):
         try:

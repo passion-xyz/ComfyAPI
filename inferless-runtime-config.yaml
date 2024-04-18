@@ -7,6 +7,7 @@ build:
     - "numexpr"
     - "inference_core_nodes"
     - "kornia"
+    - "onnxruntime"
   python_packages:
     - "torch"
     - "torchsde"
@@ -27,3 +28,4 @@ build:
     - "numexpr"
     - "inference_core_nodes"
     - "kornia"
+    - "onnxruntime"
