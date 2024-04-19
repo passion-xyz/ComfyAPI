@@ -25,7 +25,7 @@ import subprocess
 
 def list_directory_contents():
     try:
-        output = subprocess.check_output(['ls ComfyUI/helpers'], universal_newlines=True)
+        output = subprocess.check_output(['ls ./ComfyUI/helpers'], universal_newlines=True)
         print("Directory contents:")
         print(output)
     except subprocess.CalledProcessError as e:
