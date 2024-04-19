@@ -3,25 +3,90 @@ build:
     - "ffmpeg"
     - "libtesseract-dev"
   python_packages:
-    - "torch"
-    - "torchsde"
-    - "einops"
-    - "transformers>=4.25.1"
-    - "safetensors>=0.3.0"
-    - "aiohttp"
-    - "accelerate"
-    - "pyyaml"
-    - "Pillow"
-    - "scipy"
-    - "tqdm"
-    - "psutil"
-    - "requests"
-    - "torchvision"
-    - "opencv-python"
-    - "numba"
-    - "numexpr"
-    - "kornia"
-    - "onnxruntime"
-    - "websocket"
-    - "websocket-client"
-    - "simpleeval"
+    - torch
+    - torchvision
+    - torchaudio
+    - torchsde
+    - einops
+    - transformers>=4.25.1
+    - safetensors>=0.3.0
+    - aiohttp
+    - accelerate
+    - pyyaml
+    - Pillow
+    - scipy
+    - tqdm
+    - psutil
+    - websocket-client==1.6.3
+
+    # was-node-suite-comfyui
+    # https://github.com/WASasquatch/was-node-suite-comfyui/blob/main/requirements.txt
+    - cmake
+    - imageio
+    - joblib
+    - matplotlib
+    - pilgram
+    - scikit-learn
+    # RemBG causes Tiny_TerraNodes to take >40s to start
+    # - rembg
+
+    # ComfyUI_essentials
+    - numba
+
+    # ComfyUI_FizzNodes
+    - pandas
+    - numexpr
+
+    # comfyui-reactor-node
+    - insightface
+    - onnx
+
+    # ComfyUI-Impact-Pack
+    - segment-anything
+    - piexif
+
+    # ComfyUI-Impact-Subpack
+    - ultralytics!=8.0.177
+
+    # comfyui_segment_anything
+    - timm
+
+    # comfyui_controlnet_aux
+    # https://github.com/Fannovel16/comfyui_controlnet_aux/blob/main/requirements.txt
+    - importlib_metadata
+    - opencv-python-headless>=4.0.1.24
+    - filelock
+    - numpy>=1.18.5, <1.25.0
+    - einops
+    - pyyaml
+    - scikit-image
+    - python-dateutil
+    - mediapipe
+    - svglib
+    - fvcore
+    - yapf
+    - omegaconf
+    - ftfy
+    - addict
+    - yacs
+    - trimesh[easy]
+    - clip-interrogator
+    - simpleeval
+    - fairscale>=0.4.4
+    - git+https://github.com/WASasquatch/img2texture.git
+    - git+https://github.com/WASasquatch/cstr
+    - gitpython
+    - joblib
+    - matplotlib
+    - opencv-python-headless[ffmpeg]<=4.7.0.72
+    - git+https://github.com/WASasquatch/ffmpy.git
+    - rembg
+    - scikit-image==0.20.0
+    - scikit-learn
+    - timm>=0.4.12
+    - onnxruntimepandas
+    - inference-gpu[yolo-world]==0.9.13
+
+  run:
+    - curl -o /usr/local/bin/pget -L "https://github.com/replicate/pget/releases/download/v0.6.0/pget_linux_x86_64" && chmod +x /usr/local/bin/pget
+    - pip install onnxruntime-gpu --extra-index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda-12/pypi/simple/
