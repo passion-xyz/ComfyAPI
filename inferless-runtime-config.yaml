@@ -20,7 +20,6 @@ build:
     - "opencv-python"
     - "numba"
     - "numexpr"
-    - "inference_core_nodes"
     - "kornia"
     - "onnxruntime"
     - "websocket"
