@@ -9,11 +9,14 @@ import json
 from urllib import request
 import requests
 
-from helpers.comfyui import ComfyUI
 
-OUTPUT_DIR = "/var/nfs-mount/Passion-ComfyUI-Volumes/output"
 INPUT_DIR = "/tmp/inputs"
+OUTPUT_DIR = "/var/nfs-mount/Passion-ComfyUI-Volumes/output"
+HELPER_DIR = "/var/nfs-mount/Passion-ComfyUI-Volumes/helpers"
 COMFYUI_TEMP_OUTPUT_DIR = "ComfyUI/temp"
+sys.path.insert(1, HELPER_DIR)
+
+from helpers.comfyui import ComfyUI
 
 class InferlessPythonModel:
 
@@ -52,7 +55,6 @@ class InferlessPythonModel:
 
     def initialize(self):
         import subprocess
-
         __location__ = os.path.realpath(
             os.path.join(os.getcwd(), os.path.dirname(__file__))
         )
