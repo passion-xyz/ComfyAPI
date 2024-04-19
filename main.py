@@ -142,6 +142,7 @@ def prompt_worker(q, server):
 
 
 async def run(server, address="", port=8188, verbose=True, call_on_start=None):
+    print(f'Server is starting on {address}:{port} with verbose={verbose}')
     await asyncio.gather(
         server.start(address, port, verbose, call_on_start), server.publish_loop()
     )
@@ -189,6 +190,7 @@ def load_extra_path_config(yaml_path):
 
 
 if __name__ == "__main__":
+    print('RUNNING SERVER')
     if args.temp_directory:
         temp_dir = os.path.join(os.path.abspath(args.temp_directory), "temp")
         print(f"Setting temp directory to: {temp_dir}")
@@ -256,8 +258,8 @@ if __name__ == "__main__":
         def startup_server(address, port):
             import webbrowser
 
-            if os.name == "nt" and address == "0.0.0.0":
-                address = "0.0.0.0"
+            if os.name == "nt" and address == "127.0.0.1":
+                address = "127.0.0.1"
             webbrowser.open(f"http://{address}:{port}")
 
         call_on_start = startup_server

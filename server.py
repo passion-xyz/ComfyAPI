@@ -611,13 +611,14 @@ class PromptServer():
             await self.send(*msg)
     async def start(self, address, port, verbose=True, call_on_start=None):
         try:
-            runner = web.AppRunner(self.app, access_log=None)
+            print('RUNNING SERVER')
+            runner = web.AppRunner(self.app)
             await runner.setup()
             site = web.TCPSite(runner, address, port)
             await site.start()
 
             if address == '':
-                address = '0.0.0.0'
+                address = '127.0.0.1'
             print("Server started successfully\n")
             print("To see the GUI, visit: http://{}:{}".format(address, port))
             if call_on_start is not None:

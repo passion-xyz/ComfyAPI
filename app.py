@@ -80,14 +80,14 @@ class InferlessPythonModel:
             data = json.dumps(p).encode("utf-8")
             print("Prompt Encoding Happened", flush=True)
             print(f"Data {data}", flush=True)
-            req = request.Request("http://0.0.0.0:8188/prompt", data=data)
+            req = request.Request("http://127.0.0.1:8188/prompt", data=data)
             request.urlopen(req)
             print("Prompt Request Sent", flush=True)
 
             task_completed = False
             while task_completed != True:
                 print("Checking Queue", flush=True)
-                response = requests.get("http://0.0.0.0:8188/queue")
+                response = requests.get("http://127.0.0.1:8188/queue")
                 if response.json()["queue_running"] == []:
                     task_completed = True
                     print("Task Completed", flush=True)
