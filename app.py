@@ -9,15 +9,11 @@ import json
 from urllib import request
 import requests
 import subprocess
-__location__ = os.path.realpath(
-    os.path.join(os.getcwd(), os.path.dirname(__file__))
-)
-
 
 OUTPUT_DIR = "/var/nfs-mount/Passion-ComfyUI-Volumes/output"
-INPUT_DIR = os.path.join(__location__, "./ComfyUI/inputs")
-HELPER_DIR = os.path.join(__location__, "./ComfyUI/helpers")
-COMFYUI_TEMP_OUTPUT_DIR = os.path.join(__location__, "./ComfyUI/temp")
+INPUT_DIR = "/var/nfs-mount/Passion-ComfyUI-Volumes/input"
+HELPER_DIR = "/var/nfs-mount/Passion-ComfyUI-Volumes/helpers"
+COMFYUI_TEMP_OUTPUT_DIR = "/tmp"
 
 print("OUTPUT_DIR: ", OUTPUT_DIR)
 print("INPUT_DIR: ", INPUT_DIR)
@@ -55,7 +51,6 @@ list_directory_contents()
 # from helpers.comfyui import ComfyUI
 
 class InferlessPythonModel:
-
     @staticmethod
     def convert_image_to_base64(image_path):
         with Image.open(image_path) as image:
