@@ -3,7 +3,7 @@
     {
       "name": "workflow",
       "shape": [1],
-      "datatype": "STRING",
+      "datatype": "BYTES",
       "data": ["There is a fine house in the forest"]
     }
   ]

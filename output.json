@@ -2,7 +2,7 @@
   "outputs": [
     {
       "name": "generated_image",
-      "datatype": "STRING",
+      "datatype": "BYTES",
       "shape": [1],
       "data": ["Blank"]
     }
