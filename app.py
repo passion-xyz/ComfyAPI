@@ -51,7 +51,8 @@ class InferlessPythonModel:
     def initialize(self):
         file_name = os.path.join(__location__, "main.py")
         print(f"Initializing {file_name}", flush=True)
-        self.process = subprocess.Popen(["python3.10", file_name,'--port','8188', '--listen','127.0.0.1'])
+
+        self.process = subprocess.Popen(["python3.10", "main.py",'--port','8188', '--listen','127.0.0.1'])
         print(f"Initialization Complete - Server Running {self.process}", flush=True)
 
     def infer(self, inputs):
