@@ -24,7 +24,7 @@ print("INPUT_DIR: ", INPUT_DIR)
 print("HELPER_DIR: ", HELPER_DIR)
 print("COMFYUI_TEMP_OUTPUT_DIR: ", COMFYUI_TEMP_OUTPUT_DIR)
 
-sys.path.insert(1, os.path.join(__location__, "./ComfyUI"))
+sys.path.insert(1, os.path.join(__location__, "ComfyUI"))
 sys.path.insert(1, HELPER_DIR)
 
 import subprocess
@@ -37,14 +37,14 @@ def list_directory_contents():
     except subprocess.CalledProcessError as e:
         print(f"Failed to list directory contents: {e}")
     try:
-        path = os.path.join(__location__, "./ComfyUI")
+        path = os.path.join(__location__, "ComfyUI")
         output = subprocess.check_output([f"ls {path}"], universal_newlines=True)
         print("Directory contents:")
         print(output)
     except subprocess.CalledProcessError as e:
         print(f"Failed to list directory contents: {e}")
     try:
-        path = os.path.join(__location__, "./ComfyUI/helpers")
+        path = os.path.join(__location__, "ComfyUI/helpers")
         output = subprocess.check_output([f"ls {path}"], universal_newlines=True)
         print("Directory contents:")
         print(output)
