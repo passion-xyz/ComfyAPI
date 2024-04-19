@@ -29,3 +29,4 @@ build:
     - "inference_core_nodes"
     - "kornia"
     - "onnxruntime"
+    - "websocket"
