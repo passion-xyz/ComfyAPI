@@ -29,7 +29,7 @@ sys.path.insert(1, HELPER_DIR)
 
 import subprocess
 
-from helpers.comfyui import ComfyUI
+# from helpers.comfyui import ComfyUI
 
 class InferlessPythonModel:
     @staticmethod
@@ -66,14 +66,11 @@ class InferlessPythonModel:
         return f"ComfyUI_{max_number:05d}_.png"
 
     def initialize(self):
-        # list_directory_contents()
-
-        # file_name = os.path.join(__location__, "./ComfyUI/main.py")
-        # self.process = subprocess.Popen(["python3.10", file_name, "--listen 0.0.0.0 --highvram"])
+        file_name = os.path.join(__location__, "./ComfyUI/main.py")
+        self.process = subprocess.Popen(["python3.10", file_name, "--highvram"])
         # self.process = subprocess.Popen(["python3.10", file_name, "--listen 0.0.0.0 --normalvram --disable-smart-memory"])
-
-        self.comfyUI = ComfyUI("127.0.0.1:8188")
-        self.comfyUI.start_server(OUTPUT_DIR, INPUT_DIR)
+        # self.comfyUI = ComfyUI("127.0.0.1:8188")
+        # self.comfyUI.start_server(OUTPUT_DIR, INPUT_DIR)
         
     def infer(self, inputs):
         try:

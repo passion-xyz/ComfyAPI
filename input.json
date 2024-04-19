@@ -5,6 +5,12 @@
       "shape": [1],
       "datatype": "BYTES",
       "data": ["There is a fine house in the forest"]
+    },
+    {
+      "name": "workflow",
+      "shape": [1],
+      "datatype": "BYTES",
+      "data": ["There is a fine house in the forest"]
     }
   ]
 }
