@@ -9,6 +9,10 @@ from PIL import Image
 from io import BytesIO
 import re
 
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__))
+)
+
 class InferlessPythonModel:
     @staticmethod
     def convert_image_to_base64(image_path):
@@ -45,10 +49,6 @@ class InferlessPythonModel:
 
     def initialize(self):
         import subprocess
-
-        __location__ = os.path.realpath(
-            os.path.join(os.getcwd(), os.path.dirname(__file__))
-        )
         file_name = os.path.join(__location__, "main.py")
         self.process = subprocess.Popen(["python3.10", file_name])
 
@@ -60,12 +60,6 @@ class InferlessPythonModel:
             positive_token = inputs["positive_token"]
             negative_token = inputs["negative_token"]
             workflow_file_name = f"{workflow}.json"
-
-            params = json.loads(inputs["parameters"])
-            __location__ = os.path.realpath(
-                os.path.join(os.getcwd(), os.path.dirname(__file__))
-            )
-            print("Recieved parameters:", params, flush=True)
 
             prompt = json.loads(
                 open(f"{__location__}/workflows/{workflow_file_name}").read()
