@@ -14,6 +14,7 @@ OUTPUT_DIR = "/var/nfs-mount/Passion-ComfyUI-Volumes/output"
 INPUT_DIR = "ComfyUI/inputs"
 HELPER_DIR = "ComfyUI/helpers"
 COMFYUI_TEMP_OUTPUT_DIR = "ComfyUI/temp"
+sys.path.insert(1, './ComfyUI')
 sys.path.insert(1, HELPER_DIR)
 
 print("OUTPUT_DIR: ", OUTPUT_DIR)
@@ -46,7 +47,7 @@ def list_directory_contents():
 list_directory_contents()
 
 
-from helpers.comfyui import ComfyUI
+# from helpers.comfyui import ComfyUI
 
 class InferlessPythonModel:
 
@@ -88,12 +89,12 @@ class InferlessPythonModel:
         __location__ = os.path.realpath(
             os.path.join(os.getcwd(), os.path.dirname(__file__))
         )
-        # file_name = os.path.join(__location__, "./ComfyUI/main.py")
-        # self.process = subprocess.Popen(["python3.10", file_name, "--listen 0.0.0.0 --highvram"])
+        file_name = os.path.join(__location__, "./ComfyUI/main.py")
+        self.process = subprocess.Popen(["python3.10", file_name, "--listen 0.0.0.0 --highvram"])
         # self.process = subprocess.Popen(["python3.10", file_name, "--listen 0.0.0.0 --normalvram --disable-smart-memory"])
 
-        self.comfyUI = ComfyUI("127.0.0.1:8188")
-        self.comfyUI.start_server(OUTPUT_DIR, INPUT_DIR)
+        # self.comfyUI = ComfyUI("127.0.0.1:8188")
+        # self.comfyUI.start_server(OUTPUT_DIR, INPUT_DIR)
         
     def infer(self, inputs):
         try:
