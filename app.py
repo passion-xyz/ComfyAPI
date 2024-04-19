@@ -37,13 +37,13 @@ def list_directory_contents():
     except subprocess.CalledProcessError as e:
         print(f"Failed to list directory contents: {e}")
     try:
-        output = subprocess.check_output(['ls ./ComfyUI'], universal_newlines=True)
+        output = subprocess.check_output([f"ls {os.path.join(__location__, "./ComfyUI")}"], universal_newlines=True)
         print("Directory contents:")
         print(output)
     except subprocess.CalledProcessError as e:
         print(f"Failed to list directory contents: {e}")
     try:
-        output = subprocess.check_output(['ls ./ComfyUI/helpers'], universal_newlines=True)
+        output = subprocess.check_output([f"ls {os.path.join(__location__, "./ComfyUI/helpers")}"], universal_newlines=True)
         print("Directory contents:")
         print(output)
     except subprocess.CalledProcessError as e:
@@ -51,8 +51,7 @@ def list_directory_contents():
 
 list_directory_contents()
 
-
-# from helpers.comfyui import ComfyUI
+from helpers.comfyui import ComfyUI
 
 class InferlessPythonModel:
     @staticmethod
