@@ -617,7 +617,7 @@ class PromptServer():
         await site.start()
 
         if address == '':
-            address = '127.0.0.1'
+            address = '0.0.0.0'
         if verbose:
             print("Starting server\n")
             print("To see the GUI go to: http://{}:{}".format(address, port))

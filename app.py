@@ -52,7 +52,7 @@ class InferlessPythonModel:
         file_name = os.path.join(__location__, "main.py")
         print(f"Initializing {file_name}", flush=True)
 
-        self.process = subprocess.Popen(["python3.10", "main.py",'--port','8188', '--listen','127.0.0.1'])
+        self.process = subprocess.Popen(["python3.10", "main.py",'--port','8188', '--listen','0.0.0.0'])
         print(f"Initialization Complete - Server Running {self.process}", flush=True)
 
     def infer(self, inputs):
@@ -74,12 +74,12 @@ class InferlessPythonModel:
             data = json.dumps(p).encode("utf-8")
             print("Prompt Encoding Happened", flush=True)
 
-            req = request.Request("http://127.0.0.1:8188/prompt", data=data)
+            req = request.Request("http://0.0.0.0:8188/prompt", data=data)
             request.urlopen(req)
 
             task_completed = False
             while task_completed != True:
-                response = requests.get("http://127.0.0.1:8188/queue")
+                response = requests.get("http://0.0.0.0:8188/queue")
                 if response.json()["queue_running"] == []:
                     task_completed = True
 
