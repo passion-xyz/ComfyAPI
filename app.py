@@ -37,13 +37,15 @@ def list_directory_contents():
     except subprocess.CalledProcessError as e:
         print(f"Failed to list directory contents: {e}")
     try:
-        output = subprocess.check_output([f"ls {os.path.join(__location__, "./ComfyUI")}"], universal_newlines=True)
+        path = os.path.join(__location__, "./ComfyUI")
+        output = subprocess.check_output([f"ls {path}"], universal_newlines=True)
         print("Directory contents:")
         print(output)
     except subprocess.CalledProcessError as e:
         print(f"Failed to list directory contents: {e}")
     try:
-        output = subprocess.check_output([f"ls {os.path.join(__location__, "./ComfyUI/helpers")}"], universal_newlines=True)
+        path = os.path.join(__location__, "./ComfyUI/helpers")
+        output = subprocess.check_output([f"ls {path}"], universal_newlines=True)
         print("Directory contents:")
         print(output)
     except subprocess.CalledProcessError as e:
