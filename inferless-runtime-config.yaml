@@ -2,14 +2,6 @@ build:
   system_packages:
     - "ffmpeg"
     - "libtesseract-dev"
-    - "opencv-python"
-    - "numba"
-    - "numexpr"
-    - "inference_core_nodes"
-    - "kornia"
-    - "onnxruntime"
-    - "websocket"
-    - "websocket-client"
   python_packages:
     - "torch"
     - "torchsde"
