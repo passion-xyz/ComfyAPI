@@ -89,11 +89,11 @@ class InferlessPythonModel:
 
     def initialize(self):
         file_name = os.path.join(__location__, "./ComfyUI/main.py")
-        self.process = subprocess.Popen(["python3.10", file_name, "--listen 0.0.0.0 --highvram"])
+        # self.process = subprocess.Popen(["python3.10", file_name, "--listen 0.0.0.0 --highvram"])
         # self.process = subprocess.Popen(["python3.10", file_name, "--listen 0.0.0.0 --normalvram --disable-smart-memory"])
 
-        # self.comfyUI = ComfyUI("127.0.0.1:8188")
-        # self.comfyUI.start_server(OUTPUT_DIR, INPUT_DIR)
+        self.comfyUI = ComfyUI("127.0.0.1:8188")
+        self.comfyUI.start_server(OUTPUT_DIR, INPUT_DIR)
         
     def infer(self, inputs):
         try:
