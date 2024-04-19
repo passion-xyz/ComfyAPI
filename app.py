@@ -50,8 +50,7 @@ class InferlessPythonModel:
     def initialize(self):
         import subprocess
         file_name = os.path.join(__location__, "main.py")
-        self.process = subprocess.Popen(["python3.10", file_name])
-
+        self.process = subprocess.Popen(["python3.10", file_name,'--port','8188'])
 
     def infer(self, inputs):
         try:
