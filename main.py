@@ -24,8 +24,8 @@ def execute_prestartup_script():
     __location__ = os.path.realpath(
         os.path.join(os.getcwd(), os.path.dirname(__file__))
     )    
-    sys.path.append(1, os.path.join(__location__, "comfy"))
-    sys.path.append(1, os.path.join(__location__, "comfy_extras"))
+    sys.path.append(os.path.join(__location__, "comfy"))
+    sys.path.append(os.path.join(__location__, "comfy_extras"))
 
     node_paths = folder_paths.get_folder_paths("custom_nodes")
     for custom_node_path in node_paths:
