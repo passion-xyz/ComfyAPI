@@ -3,6 +3,6 @@ INPUT_SCHEMA = {
         'datatype': 'STRING',
         'required': True,
         'shape': [1],
-        'example': ["{\"prompt\": \"A bird flying while smoking a cigratte\"}"]
+        'example': ["There is a fine house in the forest"]
     }
 }

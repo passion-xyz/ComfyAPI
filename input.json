@@ -1,10 +1,10 @@
-{
-  "inputs": [
-    {
-      "name": "workflow",
-      "datatype": "STRING",
-      "shape": [1],
-      "data": ["{\"prompt\": \"A bird flying while smoking a cigratte\"}"]
-    }
-  ]
-}
+// {
+//   "inputs": [
+//     {
+//       "name": "workflow",
+//       "shape": [1],
+//       "datatype": "STRING",
+//       "data": ["There is a fine house in the forest"]
+//     }
+//   ]
+// }
