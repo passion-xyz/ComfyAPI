@@ -10,6 +10,10 @@ from urllib import request
 import requests
 import subprocess
 
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__))
+)
+
 OUTPUT_DIR = "/var/nfs-mount/Passion-ComfyUI-Volumes/output"
 INPUT_DIR = "/var/nfs-mount/Passion-ComfyUI-Volumes/input"
 HELPER_DIR = "/var/nfs-mount/Passion-ComfyUI-Volumes/helpers"
