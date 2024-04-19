@@ -53,7 +53,7 @@ class ComfyUI:
         print("Server running")
 
     def run_server(self, output_directory, input_directory):
-        file_name = os.path.join(__location__, "./ComfyUI/main.py")
+        file_name = os.path.join(__location__, "ComfyUI/main.py")
 
         print(file_name)
         command = f"python3.10 {file_name} --output-directory {output_directory} --input-directory {input_directory} --disable-metadata"
