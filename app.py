@@ -8,13 +8,17 @@ import re
 import json
 from urllib import request
 import requests
+import subprocess
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__))
+)
 
 
 OUTPUT_DIR = "/var/nfs-mount/Passion-ComfyUI-Volumes/output"
-INPUT_DIR = "ComfyUI/inputs"
-HELPER_DIR = "ComfyUI/helpers"
-COMFYUI_TEMP_OUTPUT_DIR = "ComfyUI/temp"
-sys.path.insert(1, './ComfyUI')
+INPUT_DIR = os.path.join(__location__, "./ComfyUI/inputs")
+HELPER_DIR = os.path.join(__location__, "./ComfyUI/helpers")
+COMFYUI_TEMP_OUTPUT_DIR = os.path.join(__location__, "./ComfyUI/temp")
+sys.path.insert(1, os.path.join(__location__, "./ComfyUI"))
 sys.path.insert(1, HELPER_DIR)
 
 print("OUTPUT_DIR: ", OUTPUT_DIR)
@@ -85,10 +89,6 @@ class InferlessPythonModel:
         return f"ComfyUI_{max_number:05d}_.png"
 
     def initialize(self):
-        import subprocess
-        __location__ = os.path.realpath(
-            os.path.join(os.getcwd(), os.path.dirname(__file__))
-        )
         file_name = os.path.join(__location__, "./ComfyUI/main.py")
         self.process = subprocess.Popen(["python3.10", file_name, "--listen 0.0.0.0 --highvram"])
         # self.process = subprocess.Popen(["python3.10", file_name, "--listen 0.0.0.0 --normalvram --disable-smart-memory"])
