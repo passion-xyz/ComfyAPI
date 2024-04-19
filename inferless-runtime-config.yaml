@@ -9,6 +9,7 @@ build:
     - "kornia"
     - "onnxruntime"
     - "websocket"
+    - "websocket-client"
   python_packages:
     - "torch"
     - "torchsde"
@@ -31,3 +32,4 @@ build:
     - "kornia"
     - "onnxruntime"
     - "websocket"
+    - "websocket-client"
