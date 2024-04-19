@@ -8,6 +8,7 @@ import base64
 from PIL import Image
 from io import BytesIO
 import re
+import subprocess
 
 __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__))
@@ -48,9 +49,10 @@ class InferlessPythonModel:
         return f"ComfyUI_{max_number:05d}_.png"
 
     def initialize(self):
-        import subprocess
         file_name = os.path.join(__location__, "main.py")
-        self.process = subprocess.Popen(["python3.10", file_name,'--port','8188'])
+        print(f"Initializing {file_name}", flush=True)
+        self.process = subprocess.Popen(["python3.10", file_name,'--port','8188', '--listen','127.0.0.1'])
+        print(f"Initialization Complete - Server Running {self.process}", flush=True)
 
     def infer(self, inputs):
         try:
