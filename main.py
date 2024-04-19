@@ -27,6 +27,7 @@ def execute_prestartup_script():
     __location__ = os.path.realpath(
         os.path.join(os.getcwd(), os.path.dirname(__file__))
     )    
+    sys.path.append(os.path.join(__location__, "."))
     sys.path.append(os.path.join(__location__, "comfy"))
     sys.path.append(os.path.join(__location__, "comfy_extras"))
     sys.path.append(os.path.join( '/var/nfs-mount/Passion-ComfyUI-Volumes', "custom_nodes"))
