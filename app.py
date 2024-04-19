@@ -10,9 +10,9 @@ from urllib import request
 import requests
 
 
-INPUT_DIR = "/tmp/inputs"
 OUTPUT_DIR = "/var/nfs-mount/Passion-ComfyUI-Volumes/output"
-HELPER_DIR = "/var/nfs-mount/Passion-ComfyUI-Volumes/helpers"
+INPUT_DIR = "ComfyUI/inputs"
+HELPER_DIR = "ComfyUI/helpers"
 COMFYUI_TEMP_OUTPUT_DIR = "ComfyUI/temp"
 sys.path.insert(1, HELPER_DIR)
 
