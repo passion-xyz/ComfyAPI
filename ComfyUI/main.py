@@ -1,6 +1,7 @@
 import comfy.options
 comfy.options.enable_args_parsing()
 
+import sys
 import os
 import importlib.util
 import folder_paths
@@ -188,6 +189,20 @@ def load_extra_path_config(yaml_path):
 
 
 if __name__ == "__main__":
+    __location__ = os.path.realpath(
+        os.path.join(os.getcwd(), os.path.dirname(__file__))
+    )
+    print(f"location inside of main.py {__location__}")
+
+    OUTPUT_DIR = "/var/nfs-mount/Passion-ComfyUI-Volumes/output"
+    INPUT_DIR = "/var/nfs-mount/Passion-ComfyUI-Volumes/input"
+    HELPER_DIR = "/var/nfs-mount/Passion-ComfyUI-Volumes/helpers"
+    COMFYUI_TEMP_OUTPUT_DIR = "/tmp"
+
+    sys.path.insert(1, os.path.join(__location__, "ComfyUI"))
+    sys.path.insert(1, os.path.join(__location__, "ComfyUI/comfy"))
+    sys.path.insert(1, HELPER_DIR)
+
     if args.temp_directory:
         temp_dir = os.path.join(os.path.abspath(args.temp_directory), "temp")
         logging.info(f"Setting temp directory to: {temp_dir}")

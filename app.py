@@ -1,14 +1,5 @@
-from io import BytesIO
-import os
-import base64
 import sys
-import subprocess
-from PIL import Image
-import re
-import json
-from urllib import request
-import requests
-import subprocess
+import os
 
 __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__))
@@ -19,16 +10,23 @@ INPUT_DIR = "/var/nfs-mount/Passion-ComfyUI-Volumes/input"
 HELPER_DIR = "/var/nfs-mount/Passion-ComfyUI-Volumes/helpers"
 COMFYUI_TEMP_OUTPUT_DIR = "/tmp"
 
-print("OUTPUT_DIR: ", OUTPUT_DIR)
-print("INPUT_DIR: ", INPUT_DIR)
-print("HELPER_DIR: ", HELPER_DIR)
-print("COMFYUI_TEMP_OUTPUT_DIR: ", COMFYUI_TEMP_OUTPUT_DIR)
-
 sys.path.insert(1, os.path.join(__location__, "ComfyUI"))
 sys.path.insert(1, os.path.join(__location__, "ComfyUI/comfy"))
 sys.path.insert(1, HELPER_DIR)
 
+from io import BytesIO
+import base64
 import subprocess
+from PIL import Image
+import re
+import json
+from urllib import request
+import requests
+
+print("OUTPUT_DIR: ", OUTPUT_DIR)
+print("INPUT_DIR: ", INPUT_DIR)
+print("HELPER_DIR: ", HELPER_DIR)
+print("COMFYUI_TEMP_OUTPUT_DIR: ", COMFYUI_TEMP_OUTPUT_DIR)
 
 # from helpers.comfyui import ComfyUI
 
