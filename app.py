@@ -18,13 +18,14 @@ OUTPUT_DIR = "/var/nfs-mount/Passion-ComfyUI-Volumes/output"
 INPUT_DIR = os.path.join(__location__, "./ComfyUI/inputs")
 HELPER_DIR = os.path.join(__location__, "./ComfyUI/helpers")
 COMFYUI_TEMP_OUTPUT_DIR = os.path.join(__location__, "./ComfyUI/temp")
-sys.path.insert(1, os.path.join(__location__, "./ComfyUI"))
-sys.path.insert(1, HELPER_DIR)
 
 print("OUTPUT_DIR: ", OUTPUT_DIR)
 print("INPUT_DIR: ", INPUT_DIR)
 print("HELPER_DIR: ", HELPER_DIR)
 print("COMFYUI_TEMP_OUTPUT_DIR: ", COMFYUI_TEMP_OUTPUT_DIR)
+
+sys.path.insert(1, os.path.join(__location__, "./ComfyUI"))
+sys.path.insert(1, HELPER_DIR)
 
 import subprocess
 
