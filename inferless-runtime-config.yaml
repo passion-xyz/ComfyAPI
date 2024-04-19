@@ -2,91 +2,18 @@ build:
   system_packages:
     - "ffmpeg"
     - "libtesseract-dev"
-    - "bash"
   python_packages:
-    - torch
-    - torchvision
-    - torchaudio
-    - torchsde
-    - einops
-    - transformers>=4.25.1
-    - safetensors>=0.3.0
-    - aiohttp
-    - accelerate
-    - pyyaml
-    - Pillow
-    - scipy
-    - tqdm
-    - psutil
-    - websocket-client==1.6.3
-
-  #   # was-node-suite-comfyui
-  #   # https://github.com/WASasquatch/was-node-suite-comfyui/blob/main/requirements.txt
-  #   - cmake
-  #   - imageio
-  #   - joblib
-  #   - matplotlib
-  #   - pilgram
-  #   - scikit-learn
-  #   # RemBG causes Tiny_TerraNodes to take >40s to start
-  #   # - rembg
-
-  #   # ComfyUI_essentials
-  #   - numba
-
-  #   # ComfyUI_FizzNodes
-  #   - pandas
-  #   - numexpr
-
-  #   # comfyui-reactor-node
-  #   - insightface
-  #   - onnx
-
-  #   # ComfyUI-Impact-Pack
-  #   - segment-anything
-  #   - piexif
-
-  #   # ComfyUI-Impact-Subpack
-  #   - ultralytics!=8.0.177
-
-  #   # comfyui_segment_anything
-  #   - timm
-
-  #   # -----------------------
-  #   # comfyui_controlnet_aux
-  #   # https://github.com/Fannovel16/comfyui_controlnet_aux/blob/main/requirements.txt
-  #   - importlib_metadata
-  #   - opencv-python-headless
-  #   - filelock
-  #   # -----------------------
-  #   - numpy
-  #   - python-dateutil
-  #   # -----------------------
-  #   - mediapipe
-  #   - svglib
-  #   - fvcore
-  #   - yapf
-  #   - omegaconf
-  #   - ftfy
-  #   - addict
-  #   - yacs
-
-  #   # -----------------------
-  #   - trimesh[easy]
-  #   - clip-interrogator
-  #   - simpleeval
-  #   # -----------------------
-  #   - fairscale>=0.4.4
-  #   - gitpython
-  #   - joblib
-  #   - matplotlib
-
-  #   - opencv-contrib-python==4.8.1.78
-  #   - opencv-python
-  #   - rembg
-  #   - scikit-image==0.20.0
-  #   - scikit-learn
-  #   - timm>=0.4.12
-  #   - inference-gpu[yolo-world]==0.9.13
-  # run:
-  #   - pip install onnxruntime-gpu --extra-index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda-12/pypi/simple/
+    - "torch"
+    - "torchsde"
+    - "einops"
+    - "transformers>=4.25.1"
+    - "safetensors>=0.3.0"
+    - "aiohttp"
+    - "accelerate"
+    - "pyyaml"
+    - "Pillow"
+    - "scipy"
+    - "tqdm"
+    - "psutil"
+    - "requests"
+    - "torchvision"

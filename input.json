@@ -1,16 +1,25 @@
 {
   "inputs": [
     {
-      "name": "workflow",
-      "shape": [1],
+      "name": "workflow_file_name",
       "datatype": "BYTES",
-      "data": ["There is a fine house in the forest"]
+      "required": true,
+      "shape": [1],
+      "example": ["txt_2_img.json"]
     },
     {
-      "name": "workflow",
-      "shape": [1],
+      "name": "positive_token",
       "datatype": "BYTES",
-      "data": ["There is a fine house in the forest"]
+      "required": true,
+      "shape": [1],
+      "example": ["There is a fine house in the forest"]
+    },
+    {
+      "name": "negative_token",
+      "datatype": "BYTES",
+      "required": true,
+      "shape": [1],
+      "example": ["There is a fine house in the forest"]
     }
   ]
 }
