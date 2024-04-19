@@ -609,20 +609,21 @@ class PromptServer():
         while True:
             msg = await self.messages.get()
             await self.send(*msg)
-
     async def start(self, address, port, verbose=True, call_on_start=None):
-        runner = web.AppRunner(self.app, access_log=None)
-        await runner.setup()
-        site = web.TCPSite(runner, address, port)
-        await site.start()
+        try:
+            runner = web.AppRunner(self.app, access_log=None)
+            await runner.setup()
+            site = web.TCPSite(runner, address, port)
+            await site.start()
 
-        if address == '':
-            address = '0.0.0.0'
-        if verbose:
-            print("Starting server\n")
-            print("To see the GUI go to: http://{}:{}".format(address, port))
-        if call_on_start is not None:
-            call_on_start(address, port)
+            if address == '':
+                address = '0.0.0.0'
+            print("Server started successfully\n")
+            print("To see the GUI, visit: http://{}:{}".format(address, port))
+            if call_on_start is not None:
+                call_on_start(address, port)
+        except Exception as e:
+            print(f"Failed to start the server: {e}")
 
     def add_on_prompt_handler(self, handler):
         self.on_prompt_handlers.append(handler)
