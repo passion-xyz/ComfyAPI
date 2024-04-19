@@ -5,7 +5,7 @@
       "datatype": "BYTES",
       "required": true,
       "shape": [1],
-      "example": ["txt_2_img.json"]
+      "example": ["txt_2_img"]
     },
     {
       "name": "positive_token",
