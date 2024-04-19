@@ -16,6 +16,24 @@ HELPER_DIR = "ComfyUI/helpers"
 COMFYUI_TEMP_OUTPUT_DIR = "ComfyUI/temp"
 sys.path.insert(1, HELPER_DIR)
 
+print("OUTPUT_DIR: ", OUTPUT_DIR)
+print("INPUT_DIR: ", INPUT_DIR)
+print("HELPER_DIR: ", HELPER_DIR)
+print("COMFYUI_TEMP_OUTPUT_DIR: ", COMFYUI_TEMP_OUTPUT_DIR)
+
+import subprocess
+
+def list_directory_contents():
+    try:
+        output = subprocess.check_output(['ls ComfyUI/helpers'], universal_newlines=True)
+        print("Directory contents:")
+        print(output)
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to list directory contents: {e}")
+
+list_directory_contents()
+
+
 from helpers.comfyui import ComfyUI
 
 class InferlessPythonModel:
