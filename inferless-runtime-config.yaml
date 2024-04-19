@@ -2,6 +2,7 @@ build:
   system_packages:
     - "ffmpeg"
     - "libtesseract-dev"
+    - "bash"
   python_packages:
     - torch
     - torchvision

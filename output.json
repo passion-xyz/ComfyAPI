@@ -1,10 +1,10 @@
-// {
-//   "outputs": [
-//     {
-//       "name": "generated_image",
-//       "datatype": "STRING",
-//       "shape": [1],
-//       "data": ["Blank"]
-//     }
-//   ]
-// }
+{
+  "outputs": [
+    {
+      "name": "generated_image",
+      "datatype": "STRING",
+      "shape": [1],
+      "data": ["Blank"]
+    }
+  ]
+}

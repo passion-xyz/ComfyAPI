@@ -29,28 +29,6 @@ sys.path.insert(1, HELPER_DIR)
 
 import subprocess
 
-def list_directory_contents():
-    try:
-        output = subprocess.check_output(['ls'], universal_newlines=True)
-        print("Directory contents:")
-        print(output)
-    except subprocess.CalledProcessError as e:
-        print(f"Failed to list directory contents: {e}")
-    try:
-        path = os.path.join(__location__, "ComfyUI")
-        output = subprocess.check_output([f"ls {path}"], universal_newlines=True)
-        print("Directory contents:")
-        print(output)
-    except subprocess.CalledProcessError as e:
-        print(f"Failed to list directory contents: {e}")
-    try:
-        path = os.path.join(__location__, "ComfyUI/helpers")
-        output = subprocess.check_output([f"ls {file_name}"], universal_newlines=True)
-        print("Directory contents:")
-        print(output)
-    except subprocess.CalledProcessError as e:
-        print(f"Failed to list directory contents: {e}")
-
 from helpers.comfyui import ComfyUI
 
 class InferlessPythonModel:

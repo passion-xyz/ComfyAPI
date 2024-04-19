@@ -1,10 +1,10 @@
-// {
-//   "inputs": [
-//     {
-//       "name": "workflow",
-//       "shape": [1],
-//       "datatype": "STRING",
-//       "data": ["There is a fine house in the forest"]
-//     }
-//   ]
-// }
+{
+  "inputs": [
+    {
+      "name": "workflow",
+      "shape": [1],
+      "datatype": "STRING",
+      "data": ["There is a fine house in the forest"]
+    }
+  ]
+}
