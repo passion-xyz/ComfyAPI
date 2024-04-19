@@ -1,5 +1,5 @@
 INPUT_SCHEMA = {
-    "workflow_file_name": {
+    "workflow": {
         'datatype': 'BYTES',
         'required': True,
         'shape': [1],
