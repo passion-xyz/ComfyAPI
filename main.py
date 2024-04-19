@@ -2,6 +2,7 @@ import comfy.options
 
 comfy.options.enable_args_parsing()
 
+import sys
 import os
 import importlib.util
 import folder_paths
@@ -19,6 +20,12 @@ def execute_prestartup_script():
         except Exception as e:
             print(f"Failed to execute startup-script: {script_path} / {e}")
         return False
+
+    __location__ = os.path.realpath(
+        os.path.join(os.getcwd(), os.path.dirname(__file__))
+    )    
+    sys.path.append(1, os.path.join(__location__, "comfy"))
+    sys.path.append(1, os.path.join(__location__, "comfy_extras"))
 
     node_paths = folder_paths.get_folder_paths("custom_nodes")
     for custom_node_path in node_paths:

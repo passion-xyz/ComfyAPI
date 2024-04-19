@@ -1,5 +1,6 @@
 import os
 import time
+import sys
 import logging
 
 supported_pt_extensions = set(['.ckpt', '.pt', '.bin', '.pth', '.safetensors'])
@@ -7,6 +8,10 @@ supported_pt_extensions = set(['.ckpt', '.pt', '.bin', '.pth', '.safetensors'])
 folder_names_and_paths = {}
 
 mount_path = '/var/nfs-mount/Passion-ComfyUI-Volumes'
+
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__))
+)
 
 base_path = os.path.dirname(os.path.realpath(__file__))
 models_dir = os.path.join(mount_path, "models")
@@ -29,6 +34,8 @@ folder_names_and_paths["gligen"] = ([os.path.join(models_dir, "gligen")], suppor
 folder_names_and_paths["upscale_models"] = ([os.path.join(models_dir, "upscale_models")], supported_pt_extensions)
 
 folder_names_and_paths["custom_nodes"] = ([os.path.join(mount_path, "custom_nodes")], [])
+
+# sys.path.append(1, os.path.join(mount_path, "custom_nodes"))
 
 folder_names_and_paths["hypernetworks"] = ([os.path.join(models_dir, "hypernetworks")], supported_pt_extensions)
 
