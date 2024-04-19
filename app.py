@@ -76,12 +76,15 @@ class InferlessPythonModel:
 
             req = request.Request("http://0.0.0.0:8188/prompt", data=data)
             request.urlopen(req)
+            print("Prompt Request Sent", flush=True)
 
             task_completed = False
             while task_completed != True:
+                print("Checking Queue", flush=True)
                 response = requests.get("http://0.0.0.0:8188/queue")
                 if response.json()["queue_running"] == []:
                     task_completed = True
+                    print("Task Completed", flush=True)
 
             print("Queue Completed", flush=True)
             final_image_name = InferlessPythonModel.get_final_image_name(
@@ -92,8 +95,9 @@ class InferlessPythonModel:
 
             return {"generated_image": base64_image}
         except Exception as e:
-            print(f"Error processing: {e}", flush=True)
-            return None
+            print(f"Error processing: {e}. Error Type: {type(e).__name__}, Arguments: {e.args}", flush=True)
+            # return None
+            return {"error": e}
 
     def finalize(self, args):
         print("Finalizing", flush=True)
