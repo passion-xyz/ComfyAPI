@@ -56,8 +56,10 @@ class InferlessPythonModel:
         file_name = os.path.join(__location__, "main.py")
         print(f"Initializing {file_name}", flush=True)
         self.process = Popen(["python3.10", "main.py"], stdout=PIPE, stderr=PIPE, bufsize=1, universal_newlines=True)
-        with self.process.stdout, self.process.stderr:
+        with self.process.stdout:
             log_subprocess_output(self.process.stdout)
+
+        with self.process.stderr:
             log_subprocess_output(self.process.stderr)
         print(f"Initialization Complete - Server Running {self.process}", flush=True)
 
