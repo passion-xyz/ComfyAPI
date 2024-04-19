@@ -8,6 +8,9 @@ import importlib.util
 import folder_paths
 import time
 
+def add_subdirectories_to_sys_path(root_dir):
+    for subdir, dirs, files in os.walk(root_dir):
+        sys.path.append(subdir)
 
 def execute_prestartup_script():
     def execute_script(script_path):
@@ -26,6 +29,11 @@ def execute_prestartup_script():
     )    
     sys.path.append(os.path.join(__location__, "comfy"))
     sys.path.append(os.path.join(__location__, "comfy_extras"))
+    sys.path.append(os.path.join( '/var/nfs-mount/Passion-ComfyUI-Volumes', "custom_nodes"))
+
+    add_subdirectories_to_sys_path(os.path.join(__location__, "comfy"))
+    add_subdirectories_to_sys_path(os.path.join(__location__, "comfy_extras"))
+    add_subdirectories_to_sys_path(os.path.join( '/var/nfs-mount/Passion-ComfyUI-Volumes', "custom_nodes"))
 
     node_paths = folder_paths.get_folder_paths("custom_nodes")
     for custom_node_path in node_paths:
