@@ -23,6 +23,9 @@ from helpers.ComfyUI_Segment_Anything import ComfyUI_Segment_Anything
 from helpers.ComfyUI_BRIA_AI_RMBG import ComfyUI_BRIA_AI_RMBG
 from helpers.WAS_Node_Suite import WAS_Node_Suite
 
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__))
+)
 
 class ComfyUI:
     def __init__(self, server_address):
@@ -50,7 +53,12 @@ class ComfyUI:
         print("Server running")
 
     def run_server(self, output_directory, input_directory):
-        command = f"python ./ComfyUI/main.py --output-directory {output_directory} --input-directory {input_directory} --disable-metadata"
+        file_name = os.path.join(__location__, "./ComfyUI/main.py")
+
+        print(file_name)
+        command = f"python3.10 {file_name} --output-directory {output_directory} --input-directory {input_directory} --disable-metadata"
+        print(command)
+
         server_process = subprocess.Popen(command, shell=True)
         server_process.wait()
 
