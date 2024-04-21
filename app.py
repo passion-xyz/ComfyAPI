@@ -84,7 +84,7 @@ class InferlessPythonModel:
     def infer(self, inputs):
         try:
             print("Infer Started", flush=True)
-            workflow = inputs["workflow"]
+            workflow = inputs["workflow"] # For more workflow add the workflow json file in the workflows directory
             positive_token = inputs["positive_token"]
             negative_token = inputs["negative_token"]
             workflow_file_name = f"{workflow}.json"
