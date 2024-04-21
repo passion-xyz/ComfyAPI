@@ -1,3 +1,4 @@
+import time
 import json
 from urllib import request, parse
 import requests
@@ -9,10 +10,26 @@ from PIL import Image
 from io import BytesIO
 import re
 from subprocess import Popen, PIPE, STDOUT
+import asyncio
+from main import my_fun
+import threading
 
 __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__))
 )
+
+
+async def run_my_fun_async():
+    # Use the current event loop
+    loop = asyncio.get_event_loop()
+    await loop.run_in_executor(None, my_fun)
+
+def run_my_fun_in_background():
+    # Create a new thread to run the async function
+    my_fun_thread = threading.Thread(target=lambda: asyncio.run(run_my_fun_async()), daemon=True)
+    
+    # Start the thread
+    my_fun_thread.start()
 
 def log_subprocess_output(pipe):
     for line in iter(pipe.readline, b''): # b'\n'-separated lines
@@ -53,15 +70,16 @@ class InferlessPythonModel:
         return f"ComfyUI_{max_number:05d}_.png"
 
     def initialize(self):
-        file_name = os.path.join(__location__, "main.py")
-        print(f"Initializing {file_name}", flush=True)
-        self.process = Popen(["python3.10", "main.py"], stdout=STDOUT, stderr=STDOUT, bufsize=1, universal_newlines=True)
-        with self.process.stdout:
-            log_subprocess_output(self.process.stdout)
+        run_my_fun_in_background()
+        #file_name = os.path.join(__location__, "main.py")
+        #print(f"Initializing {file_name}", flush=True)
+        #self.process = Popen(["python3.10", "main.py"], stdout=STDOUT, stderr=STDOUT, bufsize=1, universal_newlines=True)
+        #with self.process.stdout:
+        #    log_subprocess_output(self.process.stdout)
 
         # with self.process.stderr:
         #     log_subprocess_output(self.process.stderr)
-        print(f"Initialization Complete - Server Running {self.process}", flush=True)
+        #print(f"Initialization Complete - Server Running {self.process}", flush=True)
 
     def infer(self, inputs):
         try:
@@ -107,13 +125,13 @@ class InferlessPythonModel:
             # return None
             return {"error": e}
 
-    def finalize(self, args):
+    def finalize(self):
         print("Finalizing", flush=True)
-        self.process.terminate()
-
-
-# if __name__ == "__main__":
+        #self.process.terminate()
+#if __name__ == "__main__":
 #     model = InferlessPythonModel()
 #     model.initialize()
-#     ab = model.infer({"workflow": "txt_2_img", "parameters": {"prompt": "masterpiece image of a smart dog wearing a coat and tie and glasses"}})
+#     time.sleep(10)
+#     ab = model.infer({"workflow": "txt_2_img","positive_token": "masterpiece image of a smart dog wearing a coat and tie and glasses","negative_token":'low resolution'})
+#     print(ab)
 #     model.finalize()
