@@ -1,3 +1,4 @@
+import time
 import json
 from urllib import request, parse
 import requests
@@ -127,8 +128,6 @@ class InferlessPythonModel:
     def finalize(self):
         print("Finalizing", flush=True)
         #self.process.terminate()
-
-import time
 #if __name__ == "__main__":
 #     model = InferlessPythonModel()
 #     model.initialize()
