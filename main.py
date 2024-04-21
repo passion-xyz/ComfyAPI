@@ -190,7 +190,6 @@ def load_extra_path_config(yaml_path):
                 folder_paths.add_model_folder_path(x, full_path)
 
 def my_fun():
-#if __name__ == "__main__":
     print('RUNNING SERVER')
     if args.temp_directory:
         temp_dir = os.path.join(os.path.abspath(args.temp_directory), "temp")
@@ -229,7 +228,6 @@ def my_fun():
         ),
     ).start()
 
-    print("---"*100,args)
     if args.output_directory:
         output_dir = os.path.abspath(args.output_directory)
         print(f"Setting output directory to: {output_dir}")
