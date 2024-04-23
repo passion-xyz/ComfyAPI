@@ -614,8 +614,11 @@ class PromptServer():
             print('RUNNING SERVER')
             runner = web.AppRunner(self.app)
             await runner.setup()
+            print('await runner.setup()')
+
             site = web.TCPSite(runner, address, port)
             await site.start()
+            print('await site.start()')
 
             if address == '':
                 address = '127.0.0.1'
