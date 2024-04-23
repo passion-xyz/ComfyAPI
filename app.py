@@ -95,12 +95,15 @@ class InferlessPythonModel:
             print("Prompt Request Sent", flush=True)
 
             task_completed = False
-            while task_completed != True:
-                print("Checking Queue", flush=True)
+            loop_counter = 0
+            while not task_completed:
+                if loop_counter % 100 == 0:
+                    print("Checking Queue", flush=True)
                 response = requests.get("http://127.0.0.1:8188/queue")
                 if response.json()["queue_running"] == []:
                     task_completed = True
                     print("Task Completed", flush=True)
+                loop_counter += 1
 
             print("Queue Completed", flush=True)
             final_image_name = InferlessPythonModel.get_final_image_name(
