@@ -1,0 +1,126 @@
+{
+  "9": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": ["22", 0]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "18": {
+    "inputs": {
+      "noise_seed": 1337,
+      "steps": 4,
+      "cfg": 1,
+      "sampler_name": "dpmpp_2m_sde",
+      "scheduler": "sgm_uniform",
+      "start_at_step": 0,
+      "refine_at_step": -1,
+      "preview_method": "auto",
+      "vae_decode": "true",
+      "sdxl_tuple": ["20", 0],
+      "latent_image": ["20", 1],
+      "optional_vae": ["20", 2]
+    },
+    "class_type": "KSampler SDXL (Eff.)",
+    "_meta": {
+      "title": "KSampler SDXL (Eff.)"
+    }
+  },
+  "20": {
+    "inputs": {
+      "base_ckpt_name": "realvisxlV40_v40LightningBakedvae.safetensors",
+      "base_clip_skip": -2,
+      "refiner_ckpt_name": "epicrealismxl_zeus.safetensors",
+      "refiner_clip_skip": -2,
+      "positive_ascore": 6,
+      "negative_ascore": 2,
+      "vae_name": "Baked VAE",
+      "positive": "$$POSITIVE_TOKEN$$",
+      "negative": "$$NEGATIVE_TOKEN$$",
+      "token_normalization": "none",
+      "weight_interpretation": "comfy",
+      "empty_latent_width": 1024,
+      "empty_latent_height": 1024,
+      "batch_size": 1,
+      "lora_stack": ["30", 0]
+    },
+    "class_type": "Eff. Loader SDXL",
+    "_meta": {
+      "title": "Eff. Loader SDXL"
+    }
+  },
+  "22": {
+    "inputs": {
+      "upscale_by": 4,
+      "seed": 1337,
+      "steps": 4,
+      "cfg": 1,
+      "sampler_name": "dpmpp_2m_sde",
+      "scheduler": "sgm_uniform",
+      "denoise": 0.2,
+      "mode_type": "Linear",
+      "tile_width": 1024,
+      "tile_height": 1024,
+      "mask_blur": 8,
+      "tile_padding": 32,
+      "seam_fix_mode": "None",
+      "seam_fix_denoise": 1,
+      "seam_fix_width": 64,
+      "seam_fix_mask_blur": 8,
+      "seam_fix_padding": 16,
+      "force_uniform_tiles": true,
+      "tiled_decode": false,
+      "image": ["18", 3],
+      "model": ["23", 0],
+      "positive": ["23", 2],
+      "negative": ["23", 3],
+      "vae": ["18", 2],
+      "upscale_model": ["24", 0]
+    },
+    "class_type": "HD UltimateSDUpscale",
+    "_meta": {
+      "title": "HD Ultimate SD Upscale"
+    }
+  },
+  "23": {
+    "inputs": {
+      "sdxl_tuple": ["18", 0]
+    },
+    "class_type": "Unpack SDXL Tuple",
+    "_meta": {
+      "title": "Unpack SDXL Tuple"
+    }
+  },
+  "24": {
+    "inputs": {
+      "model_name": "4xNMKDSuperscale_4xNMKDSuperscale.pt"
+    },
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "Load Upscale Model"
+    }
+  },
+  "30": {
+    "inputs": {
+      "switch_1": "On",
+      "lora_name_1": "sdxl_lightning_4step_lora.safetensors",
+      "model_weight_1": 1,
+      "clip_weight_1": 1,
+      "switch_2": "Off",
+      "lora_name_2": "None",
+      "model_weight_2": 1,
+      "clip_weight_2": 1,
+      "switch_3": "Off",
+      "lora_name_3": "None",
+      "model_weight_3": 1,
+      "clip_weight_3": 1
+    },
+    "class_type": "CR LoRA Stack",
+    "_meta": {
+      "title": "💊 CR LoRA Stack"
+    }
+  }
+}
