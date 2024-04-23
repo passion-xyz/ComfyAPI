@@ -13,3 +13,5 @@ psutil
 requests
 opencv-python
 numba
+clip-interrogator
+simpleeval

@@ -19,7 +19,7 @@ curl --location 'https://m-66f63a8dcc79442fb2c772e3193fedd8-m.default.model-v2.i
                 1
             ],
             "data": [
-                "Busty Vintage Spaceage by Ed Mell and Russ Mills,  (luminar , vivacious , masterful:1.4), poster art, bold lines, hyper detailed, expressive,  award winning,  (scenery:1.4), (intricate details, masterpiece, best quality:1.4),ring light , looking at viewer, dynamic pose, wide angle view, atmospheric haze, Film grain, cinematic film still, highly detailed, high budget, cinemascope, moody, epic, OverallDetail, gorgeous, 2000s vintage RAW photo, photorealistic, candid camera, color graded cinematic, eye catchlights, atmospheric lighting, skin pores, imperfections, natural, shallow dof,"
+                "autumn best quality, ink painting, acrylic, cute ice cornflowers, sunrise, by Craola, Dan Mumford, Andy Kehoe, 2d, flat, adorable, vintage, art on a cracked paper, fairytale, storybook detailed illustration, cinematic, ultra highly detailed, tiny details, beautiful details, mystical, luminism, vibrant colors, complex background, centered, symmetry, painted, intricate, volumetric lighting, beautiful, rich deep colors masterpiece, sharp focus, ultra detailed, in the style of dan mumford and marc simonetti, astrophotography, centered, symmetry, painted, intricate, volumetric lighting, beautiful, rich deep colors masterpiece, sharp focus, ultra detailed, in the style of dan mumford and marc simonetti, astrophotography<lora:xl_more_art-full_v1:0.5>"
             ],
             "datatype": "BYTES"
         },
@@ -29,7 +29,7 @@ curl --location 'https://m-66f63a8dcc79442fb2c772e3193fedd8-m.default.model-v2.i
                 1
             ],
             "data": [
-                "nsfw,yallow,(((pubic))), ((((pubic_hair)))),sketch, duplicate, ugly, huge eyes, text, logo, monochrome, worst face, (bad and mutated hands:1.3), (worst quality:1.7), (low quality:1.7), (blurry:1.7),horror, geometry, bad_prompt, (bad hands), (missing fingers), multiple limbs, bad anatomy, (interlocked fingers:1.2),(interlocked leg:1.2), Ugly Fingers, (extra digit and hands and fingers and legs and arms:1.4), crown braid,, (deformed fingers:1.2), (long fingers:1.2),succubus wings,horn,succubus horn,succubus hairstyle, (bad-artist-anime), bad-artist, bad hand"
+                "(worst quality, low quality:2), NSFW,monochrome, zombie,overexposure, watermark,text,bad anatomy,bad hand,((extra hands)),extra fingers,too many fingers,fused fingers,bad arm,distorted arm,extra arms,fused arms,extra legs,missing leg,disembodied leg,extra nipples, detached arm, liquid hand,inverted hand,disembodied limb, oversized head,extra body,extra navel,easynegative,(hair between eyes),sketch, duplicate, ugly, huge eyes, text, logo, worst face, (bad and mutated hands:1.3),  (blurry:2.0), horror, geometry, bad_prompt, (bad hands), (missing fingers), multiple limbs, bad anatomy, (interlocked fingers:1.2), Ugly Fingers, (extra digit and hands and fingers and legs and arms:1.4), (deformed fingers:1.2), (long fingers:1.2),(bad-artist-anime), bad-artist, bad hand, extra legs ,(ng_deepnegative_v1_75t),((hands on head))"
             ],
             "datatype": "BYTES"
         }

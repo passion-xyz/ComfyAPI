@@ -17,3 +17,5 @@ build:
     - "psutil"
     - "requests"
     - "torchvision"
+    - "clip-interrogator"
+    - "simpleeval"
