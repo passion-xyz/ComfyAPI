@@ -19,7 +19,7 @@ curl --location 'https://m-66f63a8dcc79442fb2c772e3193fedd8-m.default.model-v2.i
                 1
             ],
             "data": [
-                "woman, goat, hugging, affection, snow, winter, outdoor, candid, warm clothing, hat, scarf, smiling, animal bond, close-up, genuine emotion, cold weather, friendship, woolen scarf, black coat, backpack, visible breath, light snowfall, bokeh background, human-animal relationship, day time, Fujifilm XT3, Canon R5, Fujicolor Fujichrome Velvia 100"
+                "realistic, portrait of a girl,AI language model, silver hair,,question answering,smart, kind, energetic, cheerful, creative, with sparkling eyes and a contagious smile, ,information providing, conversation engaging, wide range of topics, accurate responses, helpful responses, knowledgeable, reliable, friendly, intelligent,sleek and futuristic design elements, and a complex network of circuits and processors. Others may imagine me as a friendly and approachable virtual assistant, with a smiling avatar or animated character representing me on their screen. Still, others may envision me as a disembodied voice, speaking from an unseen source, providing helpful and informative responses with a calm and reassuring tone"
             ],
             "datatype": "BYTES"
         },
@@ -34,4 +34,4 @@ curl --location 'https://m-66f63a8dcc79442fb2c772e3193fedd8-m.default.model-v2.i
             "datatype": "BYTES"
         }
     ]
-}' | jq -r '.outputs[0].data[0]' | base64 --decode > output.png
+}' | jq -r '.outputs[0].data[0]' | base64 --decode > "./output_folder/$(date +%Y%m%d%H%M%S)_output.png"

@@ -97,7 +97,7 @@ class InferlessPythonModel:
             task_completed = False
             loop_counter = 0
             while not task_completed:
-                if loop_counter % 100 == 0:
+                if loop_counter % 500 == 0:
                     print("Checking Queue", flush=True)
                 response = requests.get("http://127.0.0.1:8188/queue")
                 if response.json()["queue_running"] == []:
