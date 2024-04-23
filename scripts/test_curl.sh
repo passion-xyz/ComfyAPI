@@ -35,3 +35,4 @@ curl --location 'https://m-66f63a8dcc79442fb2c772e3193fedd8-m.default.model-v2.i
         }
     ]
 }' | jq -r '.outputs[0].data[0]' | base64 --decode > "./output_folder/$(date +%Y%m%d%H%M%S)_output.png"
+
