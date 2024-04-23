@@ -19,7 +19,7 @@ curl --location 'https://m-66f63a8dcc79442fb2c772e3193fedd8-m.default.model-v2.i
                 1
             ],
             "data": [
-                "realistic, portrait of a girl,AI language model, silver hair,,question answering,smart, kind, energetic, cheerful, creative, with sparkling eyes and a contagious smile, ,information providing, conversation engaging, wide range of topics, accurate responses, helpful responses, knowledgeable, reliable, friendly, intelligent,sleek and futuristic design elements, and a complex network of circuits and processors. Others may imagine me as a friendly and approachable virtual assistant, with a smiling avatar or animated character representing me on their screen. Still, others may envision me as a disembodied voice, speaking from an unseen source, providing helpful and informative responses with a calm and reassuring tone"
+                "Busty Vintage Spaceage by Ed Mell and Russ Mills,  (luminar , vivacious , masterful:1.4), poster art, bold lines, hyper detailed, expressive,  award winning,  (scenery:1.4), (intricate details, masterpiece, best quality:1.4),ring light , looking at viewer, dynamic pose, wide angle view, atmospheric haze, Film grain, cinematic film still, highly detailed, high budget, cinemascope, moody, epic, OverallDetail, gorgeous, 2000s vintage RAW photo, photorealistic, candid camera, color graded cinematic, eye catchlights, atmospheric lighting, skin pores, imperfections, natural, shallow dof,"
             ],
             "datatype": "BYTES"
         },
@@ -29,7 +29,7 @@ curl --location 'https://m-66f63a8dcc79442fb2c772e3193fedd8-m.default.model-v2.i
                 1
             ],
             "data": [
-                "LEFT BLANK FOR txt_2_img_xl_lightning"
+                "nsfw,yallow,(((pubic))), ((((pubic_hair)))),sketch, duplicate, ugly, huge eyes, text, logo, monochrome, worst face, (bad and mutated hands:1.3), (worst quality:1.7), (low quality:1.7), (blurry:1.7),horror, geometry, bad_prompt, (bad hands), (missing fingers), multiple limbs, bad anatomy, (interlocked fingers:1.2),(interlocked leg:1.2), Ugly Fingers, (extra digit and hands and fingers and legs and arms:1.4), crown braid,, (deformed fingers:1.2), (long fingers:1.2),succubus wings,horn,succubus horn,succubus hairstyle, (bad-artist-anime), bad-artist, bad hand"
             ],
             "datatype": "BYTES"
         }
