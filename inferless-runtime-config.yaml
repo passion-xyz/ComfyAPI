@@ -17,6 +17,7 @@ build:
     - "psutil"
     - "requests"
     - "torchvision"
+    - "uuid"
     # efficiency-nodes-comfyui
     - "clip-interrogator"
     - "simpleeval"

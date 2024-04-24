@@ -16,3 +16,4 @@ numba
 clip-interrogator
 simpleeval
 insightface
+uuid
