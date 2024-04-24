@@ -281,3 +281,4 @@ def my_fun():
         return sys.exit(1)
 
     cleanup_temp()
+

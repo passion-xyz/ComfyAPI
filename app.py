@@ -19,7 +19,6 @@ __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__))
 )
 
-
 async def run_my_fun_async():
     # Use the current event loop
     loop = asyncio.get_event_loop()
