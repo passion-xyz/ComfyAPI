@@ -19,6 +19,7 @@ build:
     - "torchvision"
     - "uuid"
     - "onnxruntime"
+    - "opencv-python"
     # efficiency-nodes-comfyui
     - "clip-interrogator"
     - "simpleeval"

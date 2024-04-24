@@ -270,7 +270,7 @@ def my_fun():
                 server_instance,
                 address=args.listen,
                 port=args.port,
-                verbose=not args.dont_print_server,
+                verbose=True,
                 call_on_start=call_on_start,
             )
         )
