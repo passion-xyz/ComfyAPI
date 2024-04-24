@@ -276,5 +276,8 @@ def my_fun():
         )
     except KeyboardInterrupt:
         print("\nStopped server")
+    except Exception as e:
+        print(f"Error processing: {e}. Error Type: {type(e).__name__}, Arguments: {e.args}", flush=True)
+        return sys.exit(1)
 
     cleanup_temp()
