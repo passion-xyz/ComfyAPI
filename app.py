@@ -73,12 +73,14 @@ class InferlessPythonModel:
         run_my_fun_in_background()
     def infer(self, inputs):
         try:
-            print("Infer Started", flush=True)
+            request_id = str(uuid.uuid4())
+            print(f"Infer Started#{request_id}", flush=True)
             workflow = inputs["workflow"] # For more workflow add the workflow json file in the workflows directory
             positive_token = inputs["positive_token"]
             negative_token = inputs["negative_token"]
             workflow_file_name = f"{workflow}.json"
-            request_id = str(uuid.uuid4())
+            print("Infer Started", flush=True)
+
             prompt = json.loads(
                 open(f"{__location__}/workflows/{workflow_file_name}").read()
                 .replace("$$POSITIVE_TOKEN$$", positive_token)
@@ -126,7 +128,7 @@ class InferlessPythonModel:
 
     def finalize(self):
         print("Finalizing", flush=True)
-        self.process.terminate()
+        # self.process.terminate()
 
 #if __name__ == "__main__":
 #     model = InferlessPythonModel()
