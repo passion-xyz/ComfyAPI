@@ -123,7 +123,6 @@ class InferlessPythonModel:
             return {"generated_images": base64_images}
         except Exception as e:
             print(f"Error processing: {e}. Error Type: {type(e).__name__}, Arguments: {e.args}", flush=True)
-            # return None
             return {"error": e}
 
     def finalize(self):

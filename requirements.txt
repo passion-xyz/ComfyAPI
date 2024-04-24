@@ -17,3 +17,4 @@ clip-interrogator
 simpleeval
 insightface
 uuid
+onnxruntime

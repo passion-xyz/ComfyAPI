@@ -18,6 +18,7 @@ build:
     - "requests"
     - "torchvision"
     - "uuid"
+    - "onnxruntime"
     # efficiency-nodes-comfyui
     - "clip-interrogator"
     - "simpleeval"
