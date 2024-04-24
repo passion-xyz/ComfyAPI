@@ -30,6 +30,7 @@ def run_my_fun_in_background():
     
     # Start the thread
     my_fun_thread.start()
+    my_fun_thread.join()
 
 def log_subprocess_output(pipe):
     for line in iter(pipe.readline, b''): # b'\n'-separated lines
