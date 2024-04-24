@@ -1,5 +1,6 @@
 import time
 import json
+import uuid
 from urllib import request, parse
 import requests
 from tqdm import tqdm
@@ -54,20 +55,19 @@ class InferlessPythonModel:
             return None
 
     @staticmethod
-    def get_final_image_name(directory):
-        pattern = re.compile(r"ComfyUI_(\d+)_\.png$")
+    def get_final_image_names(directory, request_id):
+        pattern = re.compile(rf"{request_id}_(\d+)_\.png$")
         max_number = 0
 
-        print("*******************************", flush=True)
+        image_names = []
         for filename in os.listdir(directory):
-            print("FileName: ", filename, flush=True)
             match = pattern.match(filename)
             if match:
                 number = int(match.group(1))
                 max_number = max(max_number, number)
+                image_names.append(f"{request_id}_{number}_.png$")
 
-        print(f"Max number: {max_number}", flush=True)
-        return f"ComfyUI_{max_number:05d}_.png"
+        return image_names
 
     def initialize(self):
         run_my_fun_in_background()
@@ -78,11 +78,12 @@ class InferlessPythonModel:
             positive_token = inputs["positive_token"]
             negative_token = inputs["negative_token"]
             workflow_file_name = f"{workflow}.json"
-
+            request_id = str(uuid.uuid4())
             prompt = json.loads(
                 open(f"{__location__}/workflows/{workflow_file_name}").read()
                 .replace("$$POSITIVE_TOKEN$$", positive_token)
                 .replace("$$NEGATIVE_TOKEN$$", negative_token)
+                .replace("$$REQUEST_ID$$", request_id)
             )
             
             p = {"prompt": prompt}
@@ -106,13 +107,18 @@ class InferlessPythonModel:
                 loop_counter += 1
 
             print("Queue Completed", flush=True)
-            final_image_name = InferlessPythonModel.get_final_image_name(
-                "/var/nfs-mount/Passion-ComfyUI-Volumes/output"
+            final_image_names = InferlessPythonModel.get_final_image_names(
+                "/var/nfs-mount/Passion-ComfyUI-Volumes/output",
+                request_id
             )
-            image_path = f"/var/nfs-mount/Passion-ComfyUI-Volumes/output/{final_image_name}"
-            base64_image = InferlessPythonModel.process_single_image(image_path)
 
-            return {"generated_image": base64_image}
+            base64_images = []
+            for final_image_name in final_image_names:
+                image_path = f"/var/nfs-mount/Passion-ComfyUI-Volumes/output/{final_image_name}"
+                base64_image = InferlessPythonModel.process_single_image(image_path)
+                base64_images.append(base64_image)
+
+            return {"generated_images": base64_images}
         except Exception as e:
             print(f"Error processing: {e}. Error Type: {type(e).__name__}, Arguments: {e.args}", flush=True)
             # return None
