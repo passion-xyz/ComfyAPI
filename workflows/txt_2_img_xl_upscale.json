@@ -1,7 +1,7 @@
 {
   "3": {
     "inputs": {
-      "seed": 0,
+      "seed": 1337,
       "steps": 4,
       "cfg": 1,
       "sampler_name": "dpmpp_2m_sde_gpu",
@@ -115,7 +115,7 @@
   },
   "14": {
     "inputs": {
-      "seed": 0,
+      "seed": 1337,
       "steps": 4,
       "cfg": 1,
       "sampler_name": "dpmpp_2m_sde_gpu",

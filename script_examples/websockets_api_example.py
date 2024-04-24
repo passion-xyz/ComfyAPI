@@ -78,7 +78,7 @@ prompt_text = """
             ],
             "sampler_name": "euler",
             "scheduler": "normal",
-            "seed": 8566257,
+            "seed": 1337,
             "steps": 20
         }
     },

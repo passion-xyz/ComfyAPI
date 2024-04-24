@@ -9,7 +9,7 @@ curl --location 'https://m-66f63a8dcc79442fb2c772e3193fedd8-m.default.model-v2.i
                 1
             ],
             "data": [
-                "txt_2_img_SDXL_upscale"
+                "txt_2_img_RealVisXL"
             ],
             "datatype": "BYTES"
         },

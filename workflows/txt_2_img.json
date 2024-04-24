@@ -10,7 +10,7 @@
       "positive": ["6", 0],
       "sampler_name": "euler",
       "scheduler": "normal",
-      "seed": 5,
+      "seed": 1337,
       "steps": 20
     }
   },
