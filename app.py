@@ -126,7 +126,7 @@ class InferlessPythonModel:
 
     def finalize(self):
         print("Finalizing", flush=True)
-        # self.process.terminate()
+        self.process.terminate()
 
 #if __name__ == "__main__":
 #     model = InferlessPythonModel()
