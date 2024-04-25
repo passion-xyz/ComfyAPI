@@ -10,8 +10,8 @@ configuration:
   # if you want to use a custom runtime, add the runtime id and name below,
   # you can find it by running `inferless runtime list` or create one with `inferless runtime upload`
   # NOTE: this is not yet supported for Serverless
-  custom_runtime_id: b1abac60-7b17-463a-8b9b-7fc53a71cf6d
-  custom_runtime_name: ComfyAPI_Runtime
+  custom_runtime_id: 76cd2882-850e-42e1-969e-1084822409ac
+  custom_runtime_name: ComfyAPI_Runtime_Dev
 
   # if you want to use a custom volume, add the volume id and name below,
   # you can find it by running `inferless volume list` or create one with `inferless volume create -n {VOLUME_NAME}`
@@ -40,3 +40,4 @@ optional:
 model_url: https://github.com/passion-xyz/ComfyAPI
 provider: GITHUB
 io_schema: true
+model_import_id: 88add0e2-c8f5-42e9-99e4-9db280757e30
