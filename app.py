@@ -76,7 +76,7 @@ class InferlessPythonModel:
 
             if workflow == 'SKIP':
                 print(f"Skip workflow #{request_id}", flush=True)
-                return {"generated_images": ['base64_image_content']}
+                return {"generated_images": ['base64_image_content'], "error": 'error name'}
 
             positive_token = inputs["positive_token"]
             negative_token = inputs["negative_token"]
