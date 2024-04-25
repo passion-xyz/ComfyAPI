@@ -88,10 +88,11 @@ class InferlessPythonModel:
             data = json.dumps(p).encode("utf-8")
             print("Prompt Encoded", flush=True)
             print(f"Data {data}", flush=True)
+
             req = request.Request(f"http://127.0.0.1:{available_port}/prompt", data=data)
             request.urlopen(req)
             print("Prompt Request Sent", flush=True)
-
+            
             task_completed = False
             loop_counter = 0
             while not task_completed:
@@ -118,7 +119,7 @@ class InferlessPythonModel:
             return {"generated_images": base64_images}
         except Exception as e:
             print(f"Error processing: {e}. Error Type: {type(e).__name__}, Arguments: {e.args}", flush=True)
-            return {"error": e}
+            return {"generated_images": [], "error": type(e).__name__}
 
     def finalize(self):
         print("Finalizing", flush=True)
