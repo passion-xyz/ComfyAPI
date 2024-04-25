@@ -27,12 +27,6 @@ __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__))
 )
 
-async def run_my_fun_async():
-    # Use the current event loop
-    loop = asyncio.get_event_loop()
-    # await loop.run_in_executor(None,lambda: my_fun(data={}))
-    await loop.run_in_executor(None, functools.partial(my_fun, available_port))
-
 class InferlessPythonModel:
     @staticmethod
     def convert_image_to_base64(image_path):
@@ -67,7 +61,7 @@ class InferlessPythonModel:
     def initialize(self):
         print('[app][initialize] Started')
         # Create a new thread to run the async function
-        self.server_thread = Thread(target=lambda: asyncio.run(run_my_fun_async()), daemon=True)
+        self.server_thread = Thread(target= functools.partial(my_fun, available_port), daemon=True)
         # Start the thread
         self.server_thread.start()
         print('[app][initialize] Ended')

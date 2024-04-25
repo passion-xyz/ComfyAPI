@@ -138,7 +138,7 @@ def prompt_worker(q, server):
 
 
 async def run(server, address="", port=8188):
-    print(f'Server is starting on {address}:{port}')
+    print(f'Server is starting on {address}:{port}', flush=True)
     await asyncio.gather(
         server.start(address, port), server.publish_loop()
     )
@@ -225,7 +225,7 @@ def my_fun(port):
 
     if args.output_directory:
         output_dir = os.path.abspath(args.output_directory)
-        print(f"Setting output directory to: {output_dir}")
+        print(f"Setting output directory to: {output_dir}", flush=True)
         folder_paths.set_output_directory(output_dir)
 
     # These are the default folders that checkpoints, clip and vae models will be saved to when using CheckpointSave, etc.. nodes
@@ -241,7 +241,7 @@ def my_fun(port):
 
     if args.input_directory:
         input_dir = os.path.abspath(args.input_directory)
-        print(f"Setting input directory to: {input_dir}")
+        print(f"Setting input directory to: {input_dir}", flush=True)
         folder_paths.set_input_directory(input_dir)
 
     try:
@@ -253,7 +253,7 @@ def my_fun(port):
             )
         )
     except KeyboardInterrupt:
-        print("\nStopped server")
+        print("\nStopped server", flush=True)
     except Exception as e:
         print(f"Error processing: {e}. Error Type: {type(e).__name__}, Arguments: {e.args}", flush=True)
         return sys.exit(1)
