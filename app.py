@@ -76,7 +76,7 @@ class InferlessPythonModel:
 
             if workflow == 'SKIP':
                 print(f"Skip workflow #{request_id}", flush=True)
-                return {"skipping_workflow_test": True}
+                return {"generated_images": ['base64_image_content']}
 
             positive_token = inputs["positive_token"]
             negative_token = inputs["negative_token"]
@@ -119,7 +119,7 @@ class InferlessPythonModel:
             for final_image_name in final_image_names:
                 image_path = f"/var/nfs-mount/Passion-ComfyUI-Volumes/output/{final_image_name}"
                 base64_image = InferlessPythonModel.process_single_image(image_path)
-                print(f'app.infer base64_image #{base64_image}')
+                print(f'app.infer base64_image {base64_image}')
                 base64_images.append(base64_image)
             print(f'app.infer base64_images #{base64_images}')
             return {"generated_images": base64_images}
