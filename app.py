@@ -65,12 +65,15 @@ class InferlessPythonModel:
         return image_names
 
     def initialize(self):
+        print('[app][initialize] Started')
         # Create a new thread to run the async function
         self.server_thread = Thread(target=lambda: asyncio.run(run_my_fun_async()), daemon=True)
         # Start the thread
         self.server_thread.start()
+        print('[app][initialize] Ended')
 
     def infer(self, inputs):
+        print('[app][infer] Started')
         try:
             request_id = str(uuid.uuid4())
             print(f"Infer Started#{request_id}", flush=True)
@@ -117,6 +120,7 @@ class InferlessPythonModel:
                 image_path = f"/var/nfs-mount/Passion-ComfyUI-Volumes/output/{final_image_name}"
                 base64_image = InferlessPythonModel.process_single_image(image_path)
                 base64_images.append(base64_image)
+            print('[app][infer] Ended')
             return {"generated_images": base64_images}
         except Exception as e:
             print(f"Error processing: {e}. Error Type: {type(e).__name__}, Arguments: {e.args}", flush=True)
