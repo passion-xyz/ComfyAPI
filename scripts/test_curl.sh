@@ -1,4 +1,4 @@
-curl --location 'https://m-66f63a8dcc79442fb2c772e3193fedd8-m.default.model-v2.inferless.com/v2/models/ComfyAPI_Dev_66f63a8dcc79442fb2c772e3193fedd8/versions/1/infer' \
+curl --location 'https://m-6ddaabaf2abc4823b351dff60836da40-m.default.model-v2.inferless.com/v2/models/ComfyAPI_Model_Dev_6ddaabaf2abc4823b351dff60836da40/versions/1/infer' \
           --header 'Content-Type: application/json' \
           --header 'Authorization: Bearer daa5116d2d8224e592b1db3fc3853391a3d5d91f99cb6119edaa200749c546cafba69998600fcf699057ca407e7467aa88eed323706afc0b4a9aa0e6fd765354' \
           --data '{
@@ -34,5 +34,4 @@ curl --location 'https://m-66f63a8dcc79442fb2c772e3193fedd8-m.default.model-v2.i
             "datatype": "BYTES"
         }
     ]
-}'
-# }' | jq -r '.outputs[0].data[0]' | base64 --decode > "./output_folder/$(date +%Y%m%d%H%M%S)_output.png"
+}' | jq -r '.outputs[0].data[0]' | base64 --decode > "./output_folder/$(date +%Y%m%d%H%M%S)_output.png"

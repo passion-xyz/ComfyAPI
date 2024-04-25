@@ -1,18 +1,13 @@
-from concurrent.futures.thread import ThreadPoolExecutor
-
-import time
 import json
 import uuid
 from urllib import request, parse
 import requests
-from tqdm import tqdm
 import os
 import asyncio
 import base64
 from PIL import Image
 from io import BytesIO
 import re
-from subprocess import Popen, PIPE, STDOUT
 import asyncio
 from main import my_fun
 from threading import Thread
@@ -26,6 +21,12 @@ available_port = get_port(PREFERRED_PORT)
 __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__))
 )
+
+async def run_my_fun_async():
+    # Use the current event loop
+    loop = asyncio.get_event_loop()
+    # await loop.run_in_executor(None,lambda: my_fun(data={}))
+    await loop.run_in_executor(None, functools.partial(my_fun, available_port))
 
 class InferlessPythonModel:
     @staticmethod
@@ -61,7 +62,7 @@ class InferlessPythonModel:
     def initialize(self):
         print('app.initialize Started', flush=True)
         # Create a new thread to run the async function
-        self.server_thread = Thread(target= functools.partial(my_fun, available_port), daemon=True)
+        self.server_thread = Thread(target=lambda: asyncio.run(run_my_fun_async()), daemon=True)
         # Start the thread
         self.server_thread.start()
         print('app.initialize Ended', flush=True)
@@ -75,7 +76,7 @@ class InferlessPythonModel:
 
             if workflow == 'SKIP':
                 print(f"Skip workflow #{request_id}", flush=True)
-                return {"generated_images": 'SKIPPING'}
+                return {"SKIP": "SKIP"}
 
             positive_token = inputs["positive_token"]
             negative_token = inputs["negative_token"]
@@ -124,7 +125,7 @@ class InferlessPythonModel:
             return {"generated_images": base64_images}
         except Exception as e:
             print(f"app.infer Error processing: {e}. Error Type: {type(e).__name__}, Arguments: {e.args}", flush=True)
-            return {"generated_images": []}
+            return {"error": f"{type(e).__name__}"}
 
     def finalize(self):
         print("app.finalize Finalizing", flush=True)
