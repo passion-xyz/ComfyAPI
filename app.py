@@ -76,7 +76,7 @@ class InferlessPythonModel:
 
             if workflow == 'SKIP':
                 print(f"Skip workflow #{request_id}", flush=True)
-                return {"SKIP": "SKIP"}
+                return {"skipping_workflow_test": True}
 
             positive_token = inputs["positive_token"]
             negative_token = inputs["negative_token"]
@@ -92,12 +92,11 @@ class InferlessPythonModel:
             p = {"prompt": prompt}
 
             data = json.dumps(p).encode("utf-8")
-            print("app.infer Prompt Encoded", flush=True)
-            print(f"app.infer Data {data}", flush=True)
+            print(f"app.infer #{request_id} Data {data}", flush=True)
 
             req = request.Request(f"http://127.0.0.1:{available_port}/prompt", data=data)
             request.urlopen(req)
-            print("app.infer Prompt Request Sent", flush=True)
+            print(f"app.infer #{request_id} Prompt Request Sent", flush=True)
 
             task_completed = False
             loop_counter = 0
@@ -110,18 +109,18 @@ class InferlessPythonModel:
                     print("app.infer Task Completed", flush=True)
                 loop_counter += 1
 
-            print("app.infer Queue Completed", flush=True)
+            print(f"app.infer #{request_id} Queue Completed", flush=True)
             final_image_names = InferlessPythonModel.get_final_image_names(
                 "/var/nfs-mount/Passion-ComfyUI-Volumes/output",
                 request_id
             )
-
+            print(f"app.infer #{request_id} final_image_names {final_image_names}", flush=True)
             base64_images = []
             for final_image_name in final_image_names:
                 image_path = f"/var/nfs-mount/Passion-ComfyUI-Volumes/output/{final_image_name}"
                 base64_image = InferlessPythonModel.process_single_image(image_path)
                 base64_images.append(base64_image)
-            print('app.infer Ended')
+            print(f'app.infer #{request_id} Ended')
             return {"generated_images": base64_images}
         except Exception as e:
             print(f"app.infer Error processing: {e}. Error Type: {type(e).__name__}, Arguments: {e.args}", flush=True)
