@@ -119,8 +119,9 @@ class InferlessPythonModel:
             for final_image_name in final_image_names:
                 image_path = f"/var/nfs-mount/Passion-ComfyUI-Volumes/output/{final_image_name}"
                 base64_image = InferlessPythonModel.process_single_image(image_path)
+                print(f'app.infer base64_image #{base64_image}')
                 base64_images.append(base64_image)
-            print(f'app.infer #{request_id} Ended')
+            print(f'app.infer base64_images #{base64_images}')
             return {"generated_images": base64_images}
         except Exception as e:
             print(f"app.infer Error processing: {e}. Error Type: {type(e).__name__}, Arguments: {e.args}", flush=True)
