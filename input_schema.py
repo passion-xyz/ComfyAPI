@@ -3,7 +3,7 @@ INPUT_SCHEMA = {
         'datatype': 'BYTES',
         'required': True,
         'shape': [1],
-        'example': ["txt_2_img"]
+        'example': ["SKIP"]
     },
     "positive_token": {
         'datatype': 'BYTES',

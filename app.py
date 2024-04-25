@@ -72,6 +72,10 @@ class InferlessPythonModel:
             request_id = str(uuid.uuid4())
             print(f"Infer Started#{request_id}", flush=True)
             workflow = inputs["workflow"] # For more workflow add the workflow json file in the workflows directory
+
+            if workflow == 'SKIP':
+                return {"generated_images": 'SKIPPING'}
+
             positive_token = inputs["positive_token"]
             negative_token = inputs["negative_token"]
             workflow_file_name = f"{workflow}.json"
