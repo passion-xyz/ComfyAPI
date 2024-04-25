@@ -1,7 +1,7 @@
 {
   "9": {
     "inputs": {
-      "filename_prefix": "ComfyUI",
+      "filename_prefix": "$$REQUEST_ID$$",
       "images": ["22", 0]
     },
     "class_type": "SaveImage",
