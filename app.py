@@ -1,5 +1,4 @@
-import concurrent
-thread_pool_ref = concurrent.futures.ThreadPoolExecutor
+from concurrent.futures.thread import ThreadPoolExecutor
 
 import time
 import json
