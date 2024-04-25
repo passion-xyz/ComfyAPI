@@ -59,15 +59,15 @@ class InferlessPythonModel:
         return image_names
 
     def initialize(self):
-        print('[app][initialize] Started')
+        print('app.initialize Started', flush=True)
         # Create a new thread to run the async function
         self.server_thread = Thread(target= functools.partial(my_fun, available_port), daemon=True)
         # Start the thread
         self.server_thread.start()
-        print('[app][initialize] Ended')
+        print('app.initialize Ended', flush=True)
 
     def infer(self, inputs):
-        print('[app][infer] Started')
+        print('app.infer Started', flush=True)
         try:
             request_id = str(uuid.uuid4())
             print(f"Infer Started#{request_id}", flush=True)
@@ -86,25 +86,25 @@ class InferlessPythonModel:
             p = {"prompt": prompt}
 
             data = json.dumps(p).encode("utf-8")
-            print("Prompt Encoded", flush=True)
-            print(f"Data {data}", flush=True)
+            print("app.infer Prompt Encoded", flush=True)
+            print(f"app.infer Data {data}", flush=True)
 
             req = request.Request(f"http://127.0.0.1:{available_port}/prompt", data=data)
             request.urlopen(req)
-            print("Prompt Request Sent", flush=True)
+            print("app.infer Prompt Request Sent", flush=True)
 
             task_completed = False
             loop_counter = 0
             while not task_completed:
                 if loop_counter % 500 == 0:
-                    print("Checking Queue", flush=True)
+                    print("app.infer Checking Queue", flush=True)
                 response = requests.get(f"http://127.0.0.1:{available_port}/queue")
                 if response.json()["queue_running"] == []:
                     task_completed = True
-                    print("Task Completed", flush=True)
+                    print("app.infer Task Completed", flush=True)
                 loop_counter += 1
 
-            print("Queue Completed", flush=True)
+            print("app.infer Queue Completed", flush=True)
             final_image_names = InferlessPythonModel.get_final_image_names(
                 "/var/nfs-mount/Passion-ComfyUI-Volumes/output",
                 request_id
@@ -115,14 +115,14 @@ class InferlessPythonModel:
                 image_path = f"/var/nfs-mount/Passion-ComfyUI-Volumes/output/{final_image_name}"
                 base64_image = InferlessPythonModel.process_single_image(image_path)
                 base64_images.append(base64_image)
-            print('[app][infer] Ended')
+            print('app.infer Ended')
             return {"generated_images": base64_images}
         except Exception as e:
-            print(f"Error processing: {e}. Error Type: {type(e).__name__}, Arguments: {e.args}", flush=True)
+            print(f"app.infer Error processing: {e}. Error Type: {type(e).__name__}, Arguments: {e.args}", flush=True)
             return {"generated_images": []}
 
     def finalize(self):
-        print("Finalizing", flush=True)
+        print("app.finalize Finalizing", flush=True)
         self.server_thread.join()
 
 #if __name__ == "__main__":
