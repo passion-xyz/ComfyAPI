@@ -1,3 +1,6 @@
+import concurrent
+thread_pool_ref = concurrent.futures.ThreadPoolExecutor
+
 import time
 import json
 import uuid
@@ -70,6 +73,7 @@ class InferlessPythonModel:
 
     def initialize(self):
         run_my_fun_in_background()
+
     def infer(self, inputs):
         try:
             request_id = str(uuid.uuid4())
@@ -126,7 +130,7 @@ class InferlessPythonModel:
 
     def finalize(self):
         print("Finalizing", flush=True)
-        self.process.terminate()
+
 
 #if __name__ == "__main__":
 #     model = InferlessPythonModel()
