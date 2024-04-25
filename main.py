@@ -142,10 +142,10 @@ def prompt_worker(q, server):
             print("gc collect")
 
 
-async def run(server, address="", port=8188, verbose=True, call_on_start=None):
-    print(f'Server is starting on {address}:{port} with verbose={verbose}')
+async def run(server, address="", port=8188):
+    print(f'Server is starting on {address}:{port}')
     await asyncio.gather(
-        server.start(address, port, verbose, call_on_start), server.publish_loop()
+        server.start(address, port), server.publish_loop()
     )
 
 
@@ -189,7 +189,10 @@ def load_extra_path_config(yaml_path):
                 print("Adding extra search path", x, full_path)
                 folder_paths.add_model_folder_path(x, full_path)
 
-def my_fun():
+def my_fun(port):
+    print('RUNNING my_fun')
+    print(f'port {port}')
+    print(f'port {port}')
     print('RUNNING my_fun')
     if args.temp_directory:
         temp_dir = os.path.join(os.path.abspath(args.temp_directory), "temp")
@@ -249,29 +252,12 @@ def my_fun():
         print(f"Setting input directory to: {input_dir}")
         folder_paths.set_input_directory(input_dir)
 
-    if args.quick_test_for_ci:
-        exit(0)
-
-    call_on_start = None
-    if args.auto_launch:
-
-        def startup_server(address, port):
-            import webbrowser
-
-            if os.name == "nt" and address == "127.0.0.1":
-                address = "127.0.0.1"
-            webbrowser.open(f"http://{address}:{port}")
-
-        call_on_start = startup_server
-
     try:
         loop.run_until_complete(
             run(
                 server_instance,
                 address=args.listen,
-                port=args.port,
-                verbose=True,
-                call_on_start=call_on_start,
+                port=port
             )
         )
     except KeyboardInterrupt:

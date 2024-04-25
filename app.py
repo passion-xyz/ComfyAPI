@@ -16,6 +16,12 @@ from subprocess import Popen, PIPE, STDOUT
 import asyncio
 from main import my_fun
 import threading
+import functools  # at the top with the other imports
+
+from get_port import get_port
+
+PREFERRED_PORT = 8188
+available_port = get_port(PREFERRED_PORT)
 
 __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__))
@@ -24,7 +30,10 @@ __location__ = os.path.realpath(
 async def run_my_fun_async():
     # Use the current event loop
     loop = asyncio.get_event_loop()
-    await loop.run_in_executor(None, my_fun)
+    # await loop.run_in_executor(None,lambda: my_fun(data={}))
+    await loop.run_in_executor(None, functools.partial(my_fun, data={
+    'port': available_port,
+}))
 
 def run_my_fun_in_background():
     # Create a new thread to run the async function
@@ -95,7 +104,7 @@ class InferlessPythonModel:
             data = json.dumps(p).encode("utf-8")
             print("Prompt Encoding Happened", flush=True)
             print(f"Data {data}", flush=True)
-            req = request.Request("http://127.0.0.1:8188/prompt", data=data)
+            req = request.Request(f"http://127.0.0.1:{available_port}/prompt", data=data)
             request.urlopen(req)
             print("Prompt Request Sent", flush=True)
 
@@ -104,7 +113,7 @@ class InferlessPythonModel:
             while not task_completed:
                 if loop_counter % 500 == 0:
                     print("Checking Queue", flush=True)
-                response = requests.get("http://127.0.0.1:8188/queue")
+                response = requests.get(f"http://127.0.0.1:{available_port}/queue")
                 if response.json()["queue_running"] == []:
                     task_completed = True
                     print("Task Completed", flush=True)
