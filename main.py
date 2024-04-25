@@ -21,7 +21,7 @@ def execute_prestartup_script():
             spec.loader.exec_module(module)
             return True
         except Exception as e:
-            print(f"Failed to execute startup-script: {script_path} / {e}")
+            print(f"main.execute_prestartup_script Failed to execute startup-script: {script_path} / {e}")
         return False
 
     __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
@@ -57,13 +57,13 @@ def execute_prestartup_script():
                     (time.perf_counter() - time_before, module_path, success)
                 )
     if len(node_prestartup_times) > 0:
-        print("\nPrestartup times for custom nodes:")
+        print("main.execute_prestartup_script Prestartup times for custom nodes:")
         for n in sorted(node_prestartup_times):
             if n[2]:
                 import_message = ""
             else:
                 import_message = " (PRESTARTUP FAILED)"
-            print("{:6.1f} seconds{}:".format(n[0], import_message), n[1])
+            print("main.execute_prestartup_script {:6.1f} seconds{}:".format(n[0], import_message), n[1])
         print()
 
 execute_prestartup_script()
@@ -87,7 +87,7 @@ if os.name == "nt":
 if __name__ == "__main__":
     if args.cuda_device is not None:
         os.environ["CUDA_VISIBLE_DEVICES"] = str(args.cuda_device)
-        print("Set cuda device to:", args.cuda_device)
+        print("main.__main__ Set cuda device to:", args.cuda_device)
 
     import cuda_malloc
 
@@ -110,7 +110,7 @@ def cuda_malloc_warning():
                 cuda_malloc_warning = True
         if cuda_malloc_warning:
             print(
-                '\nWARNING: this card most likely does not support cuda-malloc, if you get "CUDA error" please run ComfyUI with: --disable-cuda-malloc\n'
+                'main.cuda_malloc_warning WARNING: this card most likely does not support cuda-malloc, if you get "CUDA error" please run ComfyUI with: --disable-cuda-malloc\n'
             )
 
 def prompt_worker(q, server):
@@ -129,21 +129,21 @@ def prompt_worker(q, server):
 
         current_time = time.perf_counter()
         execution_time = current_time - execution_start_time
-        print("Prompt executed in {:.2f} seconds".format(execution_time))
+        print("main.prompt_worker Prompt executed in {:.2f} seconds".format(execution_time))
         if (current_time - last_gc_collect) > 10.0:
             gc.collect()
             comfy.model_management.soft_empty_cache()
             last_gc_collect = current_time
-            print("gc collect")
+            print("main.prompt_worker gc collect")
 
 
 async def run(server, address, port):
-    print(f'Server received params {address}:{port}', flush=True)
+    print(f'main.run Server received params {address}:{port}', flush=True)
     if not address:
         address = ''
     if not port:
         port = 8188
-    print(f'Server is starting on {address}:{port}', flush=True)
+    print(f'main.run Server is starting on {address}:{port}', flush=True)
     await asyncio.gather(
         server.start(address, port), server.publish_loop()
     )
@@ -186,7 +186,7 @@ def load_extra_path_config(yaml_path):
                 full_path = y
                 if base_path is not None:
                     full_path = os.path.join(base_path, full_path)
-                print("Adding extra search path", x, full_path)
+                print("main.load_extra_path_config Adding extra search path", x, full_path)
                 folder_paths.add_model_folder_path(x, full_path)
 
 def my_fun(port):

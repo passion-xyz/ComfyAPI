@@ -122,5 +122,15 @@
     "_meta": {
       "title": "💊 CR LoRA Stack"
     }
+  },
+  "31": {
+    "inputs": {
+      "filename_prefix": "$$REQUEST_ID$$",
+      "images": ["18", 3]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
   }
 }

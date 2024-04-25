@@ -376,6 +376,7 @@ class PromptExecutor:
                 # error was raised
                 success, error, ex = recursive_execute(self.server, prompt, self.outputs, output_node_id, extra_data, executed, prompt_id, self.outputs_ui, self.object_storage)
                 if success is not True:
+                    print(f"execution.execute Error occurred {error} {ex}")
                     self.handle_execution_error(prompt_id, prompt, current_outputs, executed, error, ex)
                     break
 
