@@ -70,10 +70,11 @@ class InferlessPythonModel:
         print('app.infer Started', flush=True)
         try:
             request_id = str(uuid.uuid4())
-            print(f"Infer Started#{request_id}", flush=True)
+            print(f"Infer Started #{request_id}", flush=True)
             workflow = inputs["workflow"] # For more workflow add the workflow json file in the workflows directory
 
             if workflow == 'SKIP':
+                print(f"Skip workflow #{request_id}", flush=True)
                 return {"generated_images": 'SKIPPING'}
 
             positive_token = inputs["positive_token"]
