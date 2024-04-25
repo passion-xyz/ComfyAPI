@@ -1,0 +1,9 @@
+name: "ComfyAPI"
+backend: "python"
+input [{name: "workflow", dims: [1], data_type: TYPE_STRING}, {name: "positive_token", dims: [1], data_type: TYPE_STRING}, {name: "negative_token", dims: [1], data_type: TYPE_STRING}]
+output []
+instance_group [
+  {
+    kind: KIND_GPU
+  }
+]

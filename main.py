@@ -192,7 +192,6 @@ def load_extra_path_config(yaml_path):
 def my_fun(port):
     print('RUNNING my_fun')
     print(f'port {port}')
-    print(f'port {port}')
     print('RUNNING my_fun')
     if args.temp_directory:
         temp_dir = os.path.join(os.path.abspath(args.temp_directory), "temp")

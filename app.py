@@ -31,9 +31,7 @@ async def run_my_fun_async():
     # Use the current event loop
     loop = asyncio.get_event_loop()
     # await loop.run_in_executor(None,lambda: my_fun(data={}))
-    await loop.run_in_executor(None, functools.partial(my_fun, data={
-    'port': available_port,
-}))
+    await loop.run_in_executor(None, functools.partial(my_fun, available_port))
 
 def run_my_fun_in_background():
     # Create a new thread to run the async function
