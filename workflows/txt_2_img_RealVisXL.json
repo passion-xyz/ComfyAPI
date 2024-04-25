@@ -69,7 +69,7 @@
   },
   "9": {
     "inputs": {
-      "filename_prefix": ["11", 0],
+      "filename_prefix": "$$REQUEST_ID$$",
       "images": ["8", 0]
     },
     "class_type": "SaveImage",
@@ -86,15 +86,6 @@
     "class_type": "LoraLoaderModelOnly",
     "_meta": {
       "title": "LoraLoaderModelOnly"
-    }
-  },
-  "11": {
-    "inputs": {
-      "string": "$$REQUEST_ID$$"
-    },
-    "class_type": "String to Text",
-    "_meta": {
-      "title": "String to Text"
     }
   }
 }

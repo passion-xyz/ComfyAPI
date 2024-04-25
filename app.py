@@ -1,3 +1,5 @@
+from concurrent.futures.thread import ThreadPoolExecutor
+
 import time
 import json
 import uuid
@@ -13,7 +15,13 @@ import re
 from subprocess import Popen, PIPE, STDOUT
 import asyncio
 from main import my_fun
-import threading
+from threading import Thread
+import functools  # at the top with the other imports
+
+from get_port import get_port
+
+PREFERRED_PORT = 8188
+available_port = get_port(PREFERRED_PORT)
 
 __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__))
@@ -22,19 +30,8 @@ __location__ = os.path.realpath(
 async def run_my_fun_async():
     # Use the current event loop
     loop = asyncio.get_event_loop()
-    await loop.run_in_executor(None, my_fun)
-
-def run_my_fun_in_background():
-    # Create a new thread to run the async function
-    my_fun_thread = threading.Thread(target=lambda: asyncio.run(run_my_fun_async()), daemon=True)
-    
-    # Start the thread
-    my_fun_thread.start()
-    my_fun_thread.join()
-
-def log_subprocess_output(pipe):
-    for line in iter(pipe.readline, b''): # b'\n'-separated lines
-        print(f"[SERVER] {line}", flush=True)
+    # await loop.run_in_executor(None,lambda: my_fun(data={}))
+    await loop.run_in_executor(None, functools.partial(my_fun, available_port))
 
 class InferlessPythonModel:
     @staticmethod
@@ -56,22 +53,27 @@ class InferlessPythonModel:
 
     @staticmethod
     def get_final_image_names(directory, request_id):
-        pattern = re.compile(rf"{request_id}_(\d+)_\.png$")
-        max_number = 0
+        pattern = re.compile(rf"({request_id}_\d+_)\.png$")
 
         image_names = []
         for filename in os.listdir(directory):
             match = pattern.match(filename)
             if match:
-                number = int(match.group(1))
-                max_number = max(max_number, number)
-                image_names.append(f"{request_id}_{number}_.png$")
+                task_id = match.group(1)
+                image_names.append(f"{task_id}.png")
 
         return image_names
 
     def initialize(self):
-        run_my_fun_in_background()
+        print('[app][initialize] Started')
+        # Create a new thread to run the async function
+        self.server_thread = Thread(target=lambda: asyncio.run(run_my_fun_async()), daemon=True)
+        # Start the thread
+        self.server_thread.start()
+        print('[app][initialize] Ended')
+
     def infer(self, inputs):
+        print('[app][infer] Started')
         try:
             request_id = str(uuid.uuid4())
             print(f"Infer Started#{request_id}", flush=True)
@@ -79,7 +81,6 @@ class InferlessPythonModel:
             positive_token = inputs["positive_token"]
             negative_token = inputs["negative_token"]
             workflow_file_name = f"{workflow}.json"
-            print("Infer Started", flush=True)
 
             prompt = json.loads(
                 open(f"{__location__}/workflows/{workflow_file_name}").read()
@@ -91,9 +92,9 @@ class InferlessPythonModel:
             p = {"prompt": prompt}
 
             data = json.dumps(p).encode("utf-8")
-            print("Prompt Encoding Happened", flush=True)
+            print("Prompt Encoded", flush=True)
             print(f"Data {data}", flush=True)
-            req = request.Request("http://127.0.0.1:8188/prompt", data=data)
+            req = request.Request(f"http://127.0.0.1:{available_port}/prompt", data=data)
             request.urlopen(req)
             print("Prompt Request Sent", flush=True)
 
@@ -102,7 +103,7 @@ class InferlessPythonModel:
             while not task_completed:
                 if loop_counter % 500 == 0:
                     print("Checking Queue", flush=True)
-                response = requests.get("http://127.0.0.1:8188/queue")
+                response = requests.get(f"http://127.0.0.1:{available_port}/queue")
                 if response.json()["queue_running"] == []:
                     task_completed = True
                     print("Task Completed", flush=True)
@@ -119,7 +120,7 @@ class InferlessPythonModel:
                 image_path = f"/var/nfs-mount/Passion-ComfyUI-Volumes/output/{final_image_name}"
                 base64_image = InferlessPythonModel.process_single_image(image_path)
                 base64_images.append(base64_image)
-
+            print('[app][infer] Ended')
             return {"generated_images": base64_images}
         except Exception as e:
             print(f"Error processing: {e}. Error Type: {type(e).__name__}, Arguments: {e.args}", flush=True)
@@ -127,7 +128,7 @@ class InferlessPythonModel:
 
     def finalize(self):
         print("Finalizing", flush=True)
-        self.process.terminate()
+        self.server_thread.join()
 
 #if __name__ == "__main__":
 #     model = InferlessPythonModel()

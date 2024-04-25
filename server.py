@@ -609,7 +609,7 @@ class PromptServer():
         while True:
             msg = await self.messages.get()
             await self.send(*msg)
-    async def start(self, address, port, verbose=True, call_on_start=None):
+    async def start(self, address, port):
         try:
             print('RUNNING SERVER')
             runner = web.AppRunner(self.app)
@@ -624,8 +624,6 @@ class PromptServer():
                 address = '127.0.0.1'
             print("Server started successfully\n")
             print("To see the GUI, visit: http://{}:{}".format(address, port))
-            if call_on_start is not None:
-                call_on_start(address, port)
         except Exception as e:
             print(f"Failed to start the server: {e}")
 

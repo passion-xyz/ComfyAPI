@@ -24,9 +24,8 @@ def execute_prestartup_script():
             print(f"Failed to execute startup-script: {script_path} / {e}")
         return False
 
-    __location__ = os.path.realpath(
-        os.path.join(os.getcwd(), os.path.dirname(__file__))
-    )    
+    __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+
     sys.path.append(os.path.join(__location__, "."))
     sys.path.append(os.path.join(__location__, "comfy"))
     sys.path.append(os.path.join(__location__, "comfy_extras"))
@@ -67,9 +66,7 @@ def execute_prestartup_script():
             print("{:6.1f} seconds{}:".format(n[0], import_message), n[1])
         print()
 
-
 execute_prestartup_script()
-
 
 # Main code
 import asyncio
@@ -103,7 +100,6 @@ from server import BinaryEventTypes
 from nodes import init_custom_nodes
 import comfy.model_management
 
-
 def cuda_malloc_warning():
     device = comfy.model_management.get_torch_device()
     device_name = comfy.model_management.get_torch_device_name(device)
@@ -116,7 +112,6 @@ def cuda_malloc_warning():
             print(
                 '\nWARNING: this card most likely does not support cuda-malloc, if you get "CUDA error" please run ComfyUI with: --disable-cuda-malloc\n'
             )
-
 
 def prompt_worker(q, server):
     e = execution.PromptExecutor(server)
@@ -142,10 +137,10 @@ def prompt_worker(q, server):
             print("gc collect")
 
 
-async def run(server, address="", port=8188, verbose=True, call_on_start=None):
-    print(f'Server is starting on {address}:{port} with verbose={verbose}')
+async def run(server, address="", port=8188):
+    print(f'Server is starting on {address}:{port}')
     await asyncio.gather(
-        server.start(address, port, verbose, call_on_start), server.publish_loop()
+        server.start(address, port), server.publish_loop()
     )
 
 
@@ -189,8 +184,8 @@ def load_extra_path_config(yaml_path):
                 print("Adding extra search path", x, full_path)
                 folder_paths.add_model_folder_path(x, full_path)
 
-def my_fun():
-    print('RUNNING my_fun')
+def my_fun(port):
+    print("Starting main my_fun")
     if args.temp_directory:
         temp_dir = os.path.join(os.path.abspath(args.temp_directory), "temp")
         print(f"Setting temp directory to: {temp_dir}")
@@ -249,29 +244,12 @@ def my_fun():
         print(f"Setting input directory to: {input_dir}")
         folder_paths.set_input_directory(input_dir)
 
-    if args.quick_test_for_ci:
-        exit(0)
-
-    call_on_start = None
-    if args.auto_launch:
-
-        def startup_server(address, port):
-            import webbrowser
-
-            if os.name == "nt" and address == "127.0.0.1":
-                address = "127.0.0.1"
-            webbrowser.open(f"http://{address}:{port}")
-
-        call_on_start = startup_server
-
     try:
         loop.run_until_complete(
             run(
                 server_instance,
                 address=args.listen,
-                port=args.port,
-                verbose=True,
-                call_on_start=call_on_start,
+                port=port
             )
         )
     except KeyboardInterrupt:

@@ -10,14 +10,14 @@ configuration:
   # if you want to use a custom runtime, add the runtime id and name below,
   # you can find it by running `inferless runtime list` or create one with `inferless runtime upload`
   # NOTE: this is not yet supported for Serverless
-  custom_runtime_id: ""
-  custom_runtime_name: ""
+  custom_runtime_id: b1abac60-7b17-463a-8b9b-7fc53a71cf6d
+  custom_runtime_name: ComfyAPI_Runtime
 
   # if you want to use a custom volume, add the volume id and name below,
   # you can find it by running `inferless volume list` or create one with `inferless volume create -n {VOLUME_NAME}`
   # NOTE: this is not yet supported for Serverless
-  custom_volume_id: ""
-  custom_volume_name: ""
+  custom_volume_id: 8b301f3f-02f7-4605-ad56-be9c6df63699
+  custom_volume_name: Passion-ComfyUI-Volumes
 
   gpu_type: A10
   inference_time: "180"

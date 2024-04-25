@@ -20,6 +20,7 @@ build:
     - "uuid"
     - "onnxruntime"
     - "opencv-python"
+    - "get-port"
     # efficiency-nodes-comfyui
     - "clip-interrogator"
     - "simpleeval"
