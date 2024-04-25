@@ -137,7 +137,12 @@ def prompt_worker(q, server):
             print("gc collect")
 
 
-async def run(server, address="", port=8188):
+async def run(server, address, port):
+    print(f'Server received params {address}:{port}', flush=True)
+    if not address:
+        address = ''
+    if not port:
+        port = 8188
     print(f'Server is starting on {address}:{port}', flush=True)
     await asyncio.gather(
         server.start(address, port), server.publish_loop()
