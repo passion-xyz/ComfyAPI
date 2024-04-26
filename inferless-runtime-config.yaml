@@ -3,7 +3,7 @@ build:
     - "ffmpeg"
     - "libtesseract-dev"
   python_packages:
-    - "torch"
+    - "torch==2.0.1"
     - "torchsde"
     - "einops"
     - "transformers>=4.25.1"

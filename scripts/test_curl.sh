@@ -34,5 +34,5 @@ curl --location 'https://m-6ddaabaf2abc4823b351dff60836da40-m.default.model-v2.i
             "datatype": "BYTES"
         }
     ]
-}'
-# }' | jq -r '.outputs[0].data[0]' | base64 --decode > "./output_folder/$(date +%Y%m%d%H%M%S)_output.png"
+}' | jq -r '.outputs[0].data[0]' | base64 --decode > "./output_folder/$(date +%Y%m%d%H%M%S)_output.png"
+# }'

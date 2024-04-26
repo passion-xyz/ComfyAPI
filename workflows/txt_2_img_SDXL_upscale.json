@@ -34,7 +34,7 @@
       "base_ckpt_name": "realvisxlV40_v40LightningBakedvae.safetensors",
       "base_clip_skip": -2,
       "refiner_ckpt_name": "epicrealismxl_zeus.safetensors",
-      "refiner_clip_skip": -2,
+      "refiner_clip_skip": -1,
       "positive_ascore": 6,
       "negative_ascore": 2,
       "vae_name": "Baked VAE",
@@ -61,7 +61,7 @@
       "sampler_name": "dpmpp_2m_sde",
       "scheduler": "sgm_uniform",
       "denoise": 0.2,
-      "mode_type": "Linear",
+      "mode_type": "Chess",
       "tile_width": 1024,
       "tile_height": 1024,
       "mask_blur": 8,
@@ -118,19 +118,6 @@
       "model_weight_3": 1,
       "clip_weight_3": 1
     },
-    "class_type": "CR LoRA Stack",
-    "_meta": {
-      "title": "CR LoRA Stack"
-    }
-  },
-  "31": {
-    "inputs": {
-      "filename_prefix": "$$REQUEST_ID$$",
-      "images": ["18", 3]
-    },
-    "class_type": "SaveImage",
-    "_meta": {
-      "title": "Save Image"
-    }
+    "class_type": "CR LoRA Stack"
   }
 }
