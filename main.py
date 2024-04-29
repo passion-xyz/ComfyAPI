@@ -10,6 +10,7 @@ import time
 
 def add_subdirectories_to_sys_path(root_dir):
     for subdir, dirs, files in os.walk(root_dir):
+        print(f'subdir {subdir}')
         sys.path.append(subdir)
 
 def execute_prestartup_script():
