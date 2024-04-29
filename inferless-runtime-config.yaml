@@ -1,10 +1,18 @@
 build:
   system_packages:
+    - "pkg-config"
     - "ffmpeg"
+    - "libswscale-dev"
+    - "libavformat-dev"
     - "libtesseract-dev"
+    - "libavcodec-dev"
     - "libgl1-mesa-glx"
     - "libglib2.0-0"
+    - "bash"
   python_packages:
+    - "numpy"
+    - "opencv-python-headless"
+
     - "torch==2.0.1"
     - "torchsde"
     - "einops"
@@ -21,7 +29,7 @@ build:
     - "torchvision"
     - "uuid"
     - "onnxruntime"
-    - "opencv-python"
+    # - "opencv-python"
     - "get-port"
     # efficiency-nodes-comfyui
     - "clip-interrogator"
@@ -45,12 +53,10 @@ build:
     - "joblib"
     - "matplotlib"
     - "numba"
-    - "numpy>=1.18.5, <1.25.0"
-    - "opencv-python-headless[ffmpeg]<=4.7.0.72"
-    - "pilgram"
-    - "git+https://github.com/WASasquatch/ffmpy.git"
     - "rembg"
     - "scikit-image==0.20.0"
     - "scikit-learn"
     - "timm>=0.4.12"
     - "transformers==4.26.1"
+    - "pilgram"
+    - "git+https://github.com/WASasquatch/ffmpy.git"

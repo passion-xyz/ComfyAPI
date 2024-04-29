@@ -64,7 +64,6 @@ def execute_prestartup_script():
             else:
                 import_message = " (PRESTARTUP FAILED)"
             print("main.execute_prestartup_script {:6.1f} seconds{}:".format(n[0], import_message), n[1])
-        print()
 
 execute_prestartup_script()
 

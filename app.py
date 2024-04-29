@@ -28,6 +28,25 @@ async def run_my_fun_async():
     # await loop.run_in_executor(None,lambda: my_fun(data={}))
     await loop.run_in_executor(None, functools.partial(my_fun, available_port))
 
+def handle_input_file(self, input_file):
+    file_extension = os.path.splitext(input_file)[1]
+    if file_extension == ".tar":
+        with tarfile.open(input_file, "r") as tar:
+            tar.extractall(INPUT_DIR)
+    elif file_extension == ".zip":
+        with zipfile.ZipFile(input_file, "r") as zip_ref:
+            zip_ref.extractall(INPUT_DIR)
+    elif file_extension in [".jpg", ".jpeg", ".png", ".webp"]:
+        shutil.copy(input_file, os.path.join(INPUT_DIR, f"input{file_extension}"))
+    else:
+        raise ValueError(f"Unsupported file type: {file_extension}")
+
+    print("====================================")
+    print(f"Inputs uploaded to {INPUT_DIR}:")
+    self.log_and_collect_files(INPUT_DIR)
+    print("====================================")
+
+
 class InferlessPythonModel:
     @staticmethod
     def convert_image_to_base64(image_path):
