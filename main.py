@@ -8,10 +8,12 @@ import importlib.util
 import folder_paths
 import time
 
-def add_subdirectories_to_sys_path(root_dir):
+def add_subdirectories_to_sys_path(root_dir, depth=1):
     for subdir, dirs, files in os.walk(root_dir):
-        print(f'subdir {subdir}')
-        sys.path.append(subdir)
+        print(f'subdir {subdir.count(os.sep)} root_dir {root_dir.count(os.sep)} {subdir}')
+        if subdir.count(os.sep) - root_dir.count(os.sep) <= depth:
+            print(f'subdir {subdir}')
+            sys.path.append(subdir)
 
 def execute_prestartup_script():
     def execute_script(script_path):
