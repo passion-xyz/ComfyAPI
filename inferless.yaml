@@ -1,6 +1,6 @@
 version: 1.0.0
 
-name: ComfyAPI
+name: ComfyAPI_Model_Local_test
 import_source: GIT
 
 # you can choose the options between ONNX, TENSORFLOW, PYTORCH
@@ -25,7 +25,7 @@ configuration:
   is_serverless: false
   max_replica: "1"
   min_replica: "0"
-  scale_down_delay: "60"
+  scale_down_delay: "600"
 env:
   # Add your environment variables here
   # ENV: 'PROD'
@@ -40,4 +40,3 @@ optional:
 model_url: https://github.com/passion-xyz/ComfyAPI
 provider: GITHUB
 io_schema: true
-model_import_id: 88add0e2-c8f5-42e9-99e4-9db280757e30
