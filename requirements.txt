@@ -23,7 +23,6 @@ get-port
 openmim
 segment-anything
 ultralytics
-scikit-image
 piexif
 pycocotools
 onnxruntime-gpu
